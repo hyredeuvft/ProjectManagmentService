@@ -1,0 +1,60 @@
+﻿<Application x:Class="ProjectManagmentService.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:ProjectManagmentService"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <Style x:Key="lStyle" TargetType="Label">
+            <Setter Property="FontSize" Value="40"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+        </Style>
+
+        <Style x:Key="btnStyle" TargetType="Button">
+            <Setter Property="Background" Value="#062341"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="32"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Foreground" Value="#FFFFFF"/>
+            <Setter Property="Width" Value="460"/>
+            <Setter Property="Height" Value="90"/>
+        </Style>
+        
+        <!--TextBox/PasswordBox-->
+        <Style x:Key="tbxStyle" TargetType="TextBox">
+            <Setter Property="Background" Value="#E0F2FE"/>
+            <Setter Property="BorderBrush" Value="#0369A1"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="32"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="Foreground" Value="#062341"/>
+            <Setter Property="Width" Value="600"/>
+            <Setter Property="Height" Value="90"/>
+        </Style>
+
+        <Style x:Key="pbStyle" TargetType="PasswordBox">
+            <Setter Property="Background" Value="#E0F2FE"/>
+            <Setter Property="BorderBrush" Value="#0369A1"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="32"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="Foreground" Value="#062341"/>
+            <Setter Property="Width" Value="600"/>
+            <Setter Property="Height" Value="90"/>
+        </Style>
+    </Application.Resources>
+</Application>
