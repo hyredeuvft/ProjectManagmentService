@@ -1,0 +1,49 @@
+﻿<Window x:Class="ProjectManagmentService.Windows.LKWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProjectManagmentService.Windows"
+        mc:Ignorable="d"
+        Title="LKWindow" Height="400" Width="350"
+        WindowStartupLocation="CenterScreen">
+    <Grid>
+        <StackPanel HorizontalAlignment="Center"
+                    Margin="50">
+            <TextBlock x:Name="txtLastName"
+                       FontSize="32"
+                       HorizontalAlignment="Left"
+                       Style="{StaticResource txtStyle}"/>
+            <TextBlock x:Name="txtFirstName"
+                       FontSize="32"
+                       HorizontalAlignment="Left"
+                       Style="{StaticResource txtStyle}"/>
+            <TextBlock x:Name="txtPatronymic"
+                       FontSize="32"
+                       HorizontalAlignment="Left"
+                       Style="{StaticResource txtStyle}"/>
+            <TextBlock x:Name="Edit"
+                       FontSize="16"
+                       FontWeight="Light"
+                       Text="Редактировать мой профиль"
+                       Margin="0 70 0 0"
+                       MouseLeftButtonUp="Edit_MouseLeftButtonUp"
+                       Style="{StaticResource txtStyle}"/>
+        </StackPanel>
+        <Button x:Name="btnExit"
+                Style="{StaticResource btnStyle}"
+                Width="120"
+                Height="50"
+                FontSize="24"
+                VerticalAlignment="Bottom"
+                Margin="30"
+                Content="Выйти" 
+                Click="btnExit_Click" >
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="10"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+    </Grid>
+</Window>

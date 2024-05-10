@@ -2,12 +2,21 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:ProjectManagmentService"
-             StartupUri="MainWindow.xaml">
+             StartupUri="Windows/AuthorizationWindow.xaml">
     <Application.Resources>
         <Style x:Key="lStyle" TargetType="Label">
             <Setter Property="FontSize" Value="40"/>
             <Setter Property="FontWeight" Value="Bold"/>
             <Setter Property="HorizontalAlignment" Value="Center"/>
+            
+        </Style>
+
+        <Style x:Key="txtStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="40"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Foreground" Value="#062341"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+
         </Style>
 
         <Style x:Key="btnStyle" TargetType="Button">
