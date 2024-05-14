@@ -19,21 +19,25 @@ using ProjectManagmentService.ClassHelper;
 namespace ProjectManagmentService.Windows
 {
     /// <summary>
-    /// Логика взаимодействия для HomeWindow.xaml
+    /// Логика взаимодействия для TaskWindow.xaml
     /// </summary>
-    public partial class HomeWindow : Window
+    public partial class TaskWindow : Window
     {
-        public HomeWindow()
+        public TaskWindow()
         {
             InitializeComponent();
+            if (EmployeeDataClass.Employee.IdPost == 3)
+            {
+                btnEdit.Visibility = Visibility.Collapsed;
+            }
             GetSortList();
         }
 
         private void GetSortList()
         {
             List<DB.Task> tasks = new List<DB.Task>();
-            tasks = Context.Task.ToList();
-            tasks = tasks.Where(i => i.Title.Contains(tbSearch.Text) && i.IsClose is false).ToList();
+            tasks = EFClass.Context.Task.ToList();
+            tasks = tasks.Where(i => i.Title.Contains(tbSearch.Text) || i.Description.Contains(tbSearch.Text)).ToList();
 
             LvList.ItemsSource = tasks;
         }
@@ -58,7 +62,8 @@ namespace ProjectManagmentService.Windows
                 addEditTaskWindow.Show();
                 this.Close();
             }
-            else {
+            else
+            {
                 AddEditTaskWindow addEditTaskWindow = new AddEditTaskWindow();
                 addEditTaskWindow.Show();
                 this.Close();
@@ -81,7 +86,7 @@ namespace ProjectManagmentService.Windows
 
         private void btnTask_Click(object sender, RoutedEventArgs e)
         {
-            TaskWindow taskWindow = new TaskWindow();   
+            TaskWindow taskWindow = new TaskWindow();
             taskWindow.Show();
             this.Close();
         }
@@ -97,7 +102,7 @@ namespace ProjectManagmentService.Windows
         {
             TimerWindow timerWindow = new TimerWindow();
             timerWindow.Show();
-            this.Close();    
+            this.Close();
         }
     }
 }

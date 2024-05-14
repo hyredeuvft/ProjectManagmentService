@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting.Contexts;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -19,23 +20,27 @@ using ProjectManagmentService.ClassHelper;
 namespace ProjectManagmentService.Windows
 {
     /// <summary>
-    /// Логика взаимодействия для HomeWindow.xaml
+    /// Логика взаимодействия для EmployeeWindow.xaml
     /// </summary>
-    public partial class HomeWindow : Window
+    public partial class EmployeeWindow : Window
     {
-        public HomeWindow()
+        public EmployeeWindow()
         {
             InitializeComponent();
+            if (EmployeeDataClass.Employee.IdPost == 3)
+            {
+                btnEdit.Visibility = Visibility.Collapsed;
+            }
             GetSortList();
         }
 
         private void GetSortList()
         {
-            List<DB.Task> tasks = new List<DB.Task>();
-            tasks = Context.Task.ToList();
-            tasks = tasks.Where(i => i.Title.Contains(tbSearch.Text) && i.IsClose is false).ToList();
+            List<DB.Employee> employees = new List<DB.Employee>();
+            employees = EFClass.Context.Employee.ToList();
+            employees = employees.Where(i => i.LastName.Contains(tbSearch.Text) || i.FirstName.Contains(tbSearch.Text)).ToList();
 
-            LvList.ItemsSource = tasks;
+            LvList.ItemsSource = employees;
         }
 
         private void btnLk_Click(object sender, RoutedEventArgs e)
@@ -51,16 +56,17 @@ namespace ProjectManagmentService.Windows
 
         private void btnEdit_Click(object sender, RoutedEventArgs e)
         {
-            if (LvList.SelectedItem is DB.Task)
+            if (LvList.SelectedItem is Employee)
             {
-                var task = LvList.SelectedItem as DB.Task;
-                AddEditTaskWindow addEditTaskWindow = new AddEditTaskWindow(task);
-                addEditTaskWindow.Show();
+                var employee = LvList.SelectedItem as Employee;
+                AddEditEmployeeWindow addEditEmployeeWindow = new AddEditEmployeeWindow(employee);
+                addEditEmployeeWindow.Show();
                 this.Close();
             }
-            else {
-                AddEditTaskWindow addEditTaskWindow = new AddEditTaskWindow();
-                addEditTaskWindow.Show();
+            else
+            {
+                AddEditEmployeeWindow addEditEmployeeWindow = new AddEditEmployeeWindow();
+                addEditEmployeeWindow.Show();
                 this.Close();
             }
         }
@@ -81,7 +87,7 @@ namespace ProjectManagmentService.Windows
 
         private void btnTask_Click(object sender, RoutedEventArgs e)
         {
-            TaskWindow taskWindow = new TaskWindow();   
+            TaskWindow taskWindow = new TaskWindow();
             taskWindow.Show();
             this.Close();
         }
@@ -97,7 +103,7 @@ namespace ProjectManagmentService.Windows
         {
             TimerWindow timerWindow = new TimerWindow();
             timerWindow.Show();
-            this.Close();    
+            this.Close();
         }
     }
 }

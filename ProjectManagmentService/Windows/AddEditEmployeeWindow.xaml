@@ -313,7 +313,7 @@
                 Background="{x:Null}"
                 BorderBrush="{x:Null}"
                 HorizontalAlignment="Left"
-                Margin="750 0 0 0"
+                Margin="1850 0 0 0"
                 Height="50">
                     <Image Source="/Resources/lk.png"/>
                 </Button>
@@ -329,7 +329,68 @@
            Style="{StaticResource lStyle}"/>
         <WrapPanel Grid.Column="0"
            Grid.Row="1"
-            Background="#062341">
+           HorizontalAlignment="Center"
+   Background="#062341">
+
+            <Button x:Name="btnEmployee"
+            Width="50"
+            Click="btnEmployee_Click"
+            Background="{x:Null}"
+            BorderBrush="{x:Null}"
+            Margin="25"
+            HorizontalContentAlignment="Center"
+            VerticalContentAlignment="Center"
+            Height="50">
+                <Image Source="/Resources/Employee.png"/>
+            </Button>
+
+            <Button x:Name="btnProject"
+            Width="50"
+            Click="btnProject_Click"
+            Background="{x:Null}"
+            BorderBrush="{x:Null}"
+            Margin="25"
+            HorizontalContentAlignment="Center"
+            VerticalContentAlignment="Center"
+            Height="50">
+                <Image Source="/Resources/Project.png"/>
+            </Button>
+
+            <Button x:Name="btnTask"
+            Width="50"
+            Click="btnTask_Click"
+            Background="{x:Null}"
+            BorderBrush="{x:Null}"
+            Margin="25"
+            HorizontalContentAlignment="Center"
+            VerticalContentAlignment="Center"
+            Height="50">
+                <Image Source="/Resources/Task.png"/>
+            </Button>
+
+            <Button x:Name="btnEntity"
+            Width="50"
+            Click="btnEntity_Click"
+            Background="{x:Null}"
+            BorderBrush="{x:Null}"
+            Margin="25"
+            HorizontalContentAlignment="Center"
+            VerticalContentAlignment="Center"
+            Height="50">
+                <Image Source="/Resources/Entity.png"/>
+            </Button>
+
+            <Button x:Name="btnTimer"
+            Width="50"
+            Click="btnTimer_Click"
+            Background="{x:Null}"
+            BorderBrush="{x:Null}"
+            Margin="25"
+            HorizontalContentAlignment="Center"
+            VerticalContentAlignment="Center"
+            Height="50">
+                <Image Source="/Resources/Timer.png"/>
+            </Button>
 
         </WrapPanel>
         <StackPanel Grid.Row="1"

@@ -170,11 +170,26 @@
     <Compile Include="Windows\AddEditEmployeeWindow.xaml.cs">
       <DependentUpon>AddEditEmployeeWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\AddEditEntityWindow.xaml.cs">
+      <DependentUpon>AddEditEntityWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\AddEditProjectWindow.xaml.cs">
+      <DependentUpon>AddEditProjectWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\AddEditTaskWindow.xaml.cs">
       <DependentUpon>AddEditTaskWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\AddEditTimerWindow.xaml.cs">
+      <DependentUpon>AddEditTimerWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\AuthorizationWindow.xaml.cs">
       <DependentUpon>AuthorizationWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\EmployeeWindow.xaml.cs">
+      <DependentUpon>EmployeeWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\EntityWindow.xaml.cs">
+      <DependentUpon>EntityWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\HomeWindow.xaml.cs">
       <DependentUpon>HomeWindow.xaml</DependentUpon>
@@ -186,7 +201,24 @@
     <Compile Include="Windows\LKWindow.xaml.cs">
       <DependentUpon>LKWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\ProjectWindow.xaml.cs">
+      <DependentUpon>ProjectWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\TaskWindow.xaml.cs">
+      <DependentUpon>TaskWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\TimerWindow.xaml.cs">
+      <DependentUpon>TimerWindow.xaml</DependentUpon>
+    </Compile>
     <Page Include="Windows\AddEditEmployeeWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\AddEditEntityWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\AddEditProjectWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -194,7 +226,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Windows\AddEditTimerWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Windows\AuthorizationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\EmployeeWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\EntityWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -203,6 +247,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\LKWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\ProjectWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\TaskWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\TimerWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -256,6 +312,11 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
+    <Resource Include="Resources\Timer.png" />
+    <Resource Include="Resources\Entity.png" />
+    <Resource Include="Resources\Task.png" />
+    <Resource Include="Resources\Project.png" />
+    <Resource Include="Resources\Employee.png" />
     <Resource Include="Resources\Edit.png" />
   </ItemGroup>
   <ItemGroup>

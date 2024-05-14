@@ -94,6 +94,8 @@ namespace ProjectManagmentService.Windows
                 }
                 Context.SaveChanges();
                 MessageBox.Show("Запись успешно обновлена!", "Успех!", MessageBoxButton.OK, MessageBoxImage.Information);
+                HomeWindow homeWindow = new HomeWindow();
+                homeWindow.Show();
                 this.Close();
             }
             else
@@ -118,13 +120,44 @@ namespace ProjectManagmentService.Windows
                 Context.Employee.Add(employee);
                 Context.SaveChanges();
                 MessageBox.Show("Запись успешно добавлена", "Успех!", MessageBoxButton.OK, MessageBoxImage.Information);
+                HomeWindow homeWindow = new HomeWindow();
+                homeWindow.Show();
                 this.Close();
             }
+        }
+        private void btnEmployee_Click(object sender, RoutedEventArgs e)
+        {
+            EmployeeWindow employeeWindow = new EmployeeWindow();
+            employeeWindow.Show();
+            this.Close();
+        }
+
+        private void btnProject_Click(object sender, RoutedEventArgs e)
+        {
+            ProjectWindow projectWindow = new ProjectWindow();
+            projectWindow.Show();
+            this.Close();
+        }
+
+        private void btnTask_Click(object sender, RoutedEventArgs e)
+        {
+            TaskWindow taskWindow = new TaskWindow();
+            taskWindow.Show();
+            this.Close();
+        }
+
+        private void btnEntity_Click(object sender, RoutedEventArgs e)
+        {
+            EntityWindow entityWindow = new EntityWindow();
+            entityWindow.Show();
+            this.Close();
         }
 
         private void btnTimer_Click(object sender, RoutedEventArgs e)
         {
-
+            TimerWindow timerWindow = new TimerWindow();
+            timerWindow.Show();
+            this.Close();
         }
     }
 }

@@ -19,23 +19,27 @@ using ProjectManagmentService.ClassHelper;
 namespace ProjectManagmentService.Windows
 {
     /// <summary>
-    /// Логика взаимодействия для HomeWindow.xaml
+    /// Логика взаимодействия для ProjectWindow.xaml
     /// </summary>
-    public partial class HomeWindow : Window
+    public partial class ProjectWindow : Window
     {
-        public HomeWindow()
+        public ProjectWindow()
         {
             InitializeComponent();
+            if (EmployeeDataClass.Employee.IdPost == 3)
+            {
+                btnEdit.Visibility = Visibility.Collapsed;
+            }
             GetSortList();
         }
 
         private void GetSortList()
         {
-            List<DB.Task> tasks = new List<DB.Task>();
-            tasks = Context.Task.ToList();
-            tasks = tasks.Where(i => i.Title.Contains(tbSearch.Text) && i.IsClose is false).ToList();
+            List<Project> projects = new List<Project>();
+            projects = EFClass.Context.Project.ToList();
+            projects = projects.Where(i => i.Title.Contains(tbSearch.Text) || i.Description.Contains(tbSearch.Text)).ToList();
 
-            LvList.ItemsSource = tasks;
+            LvList.ItemsSource = projects;
         }
 
         private void btnLk_Click(object sender, RoutedEventArgs e)
@@ -51,16 +55,17 @@ namespace ProjectManagmentService.Windows
 
         private void btnEdit_Click(object sender, RoutedEventArgs e)
         {
-            if (LvList.SelectedItem is DB.Task)
+            if (LvList.SelectedItem is Project)
             {
-                var task = LvList.SelectedItem as DB.Task;
-                AddEditTaskWindow addEditTaskWindow = new AddEditTaskWindow(task);
-                addEditTaskWindow.Show();
+                var employee = LvList.SelectedItem as Project;
+                AddEditProjectWindow addEditProjectWindow = new AddEditProjectWindow(employee);
+                addEditProjectWindow.Show();
                 this.Close();
             }
-            else {
-                AddEditTaskWindow addEditTaskWindow = new AddEditTaskWindow();
-                addEditTaskWindow.Show();
+            else
+            {
+                AddEditProjectWindow addEditProjectWindow = new AddEditProjectWindow();
+                addEditProjectWindow.Show();
                 this.Close();
             }
         }
@@ -81,7 +86,7 @@ namespace ProjectManagmentService.Windows
 
         private void btnTask_Click(object sender, RoutedEventArgs e)
         {
-            TaskWindow taskWindow = new TaskWindow();   
+            TaskWindow taskWindow = new TaskWindow();
             taskWindow.Show();
             this.Close();
         }
@@ -97,7 +102,7 @@ namespace ProjectManagmentService.Windows
         {
             TimerWindow timerWindow = new TimerWindow();
             timerWindow.Show();
-            this.Close();    
+            this.Close();
         }
     }
 }

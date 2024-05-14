@@ -1,0 +1,202 @@
+﻿<Window x:Class="ProjectManagmentService.Windows.TimerWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProjectManagmentService.Windows"
+        mc:Ignorable="d"
+        Title="TimerWindow" Height="450" Width="800"
+                        WindowStartupLocation="CenterScreen"
+WindowState="Maximized">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+
+        <Border Grid.Row="0"
+           Grid.ColumnSpan="2"
+           Height="100"
+           VerticalAlignment="Center"
+           Background="#062341">
+            <StackPanel Orientation="Horizontal">
+                <TextBox x:Name="tbSearch"
+                 Height="50"
+                 Margin="800 0 0 0"
+                 Background="#FFFFFF"
+                 BorderBrush="#FFFFFF"
+                 Width="300"
+                 FontSize="18"
+                 TextChanged="tbSearch_TextChanged"
+                 Style="{StaticResource tbxStyle}">
+                    <TextBox.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="10"/>
+                        </Style>
+                    </TextBox.Resources>
+                </TextBox>
+
+                <Button x:Name="btnEdit"
+                Width="50"
+                HorizontalAlignment="Left"
+                Click="btnEdit_Click"
+                Background="{x:Null}"
+                BorderBrush="{x:Null}"
+                Margin="5"
+                HorizontalContentAlignment="Center"
+                VerticalContentAlignment="Center"
+                Height="50">
+                    <Image Source="/Resources/Edit.png"/>
+                </Button>
+
+                <Button x:Name="btnLk"
+                Width="50"
+                Background="{x:Null}"
+                BorderBrush="{x:Null}"
+                HorizontalAlignment="Left"
+                Margin="700 0 0 0"
+                Click="btnLk_Click"
+                Height="50">
+                    <Image Source="/Resources/lk.png"/>
+                </Button>
+            </StackPanel>
+        </Border>
+
+        <Label Content="Сервис проектного менеджмента"
+           VerticalAlignment="Center"
+           HorizontalAlignment="Left"
+           Margin="5"
+           Grid.Row="0"
+           Grid.ColumnSpan="2"
+           Foreground="#FFFFFF"
+           Style="{StaticResource lStyle}"/>
+
+
+        <WrapPanel Grid.Column="0"
+           Grid.Row="1"
+           
+           HorizontalAlignment="Center"
+   Background="#062341">
+
+            <Button x:Name="btnEmployee"
+            Width="50"
+            Click="btnEmployee_Click"
+            Background="{x:Null}"
+            BorderBrush="{x:Null}"
+            Margin="25"
+            HorizontalContentAlignment="Center"
+            VerticalContentAlignment="Center"
+            Height="50">
+                <Image Source="/Resources/Employee.png"/>
+            </Button>
+
+            <Button x:Name="btnProject"
+            Width="50"
+            Click="btnProject_Click"
+            Background="{x:Null}"
+            BorderBrush="{x:Null}"
+            Margin="25"
+            HorizontalContentAlignment="Center"
+            VerticalContentAlignment="Center"
+            Height="50">
+                <Image Source="/Resources/Project.png"/>
+            </Button>
+
+            <Button x:Name="btnTask"
+            Width="50"
+            Click="btnTask_Click"
+            Background="{x:Null}"
+            BorderBrush="{x:Null}"
+            Margin="25"
+            HorizontalContentAlignment="Center"
+            VerticalContentAlignment="Center"
+            Height="50">
+                <Image Source="/Resources/Task.png"/>
+            </Button>
+
+            <Button x:Name="btnEntity"
+            Width="50"
+            Click="btnEntity_Click"
+            Background="{x:Null}"
+            BorderBrush="{x:Null}"
+            Margin="25"
+            HorizontalContentAlignment="Center"
+            VerticalContentAlignment="Center"
+            Height="50">
+                <Image Source="/Resources/Entity.png"/>
+            </Button>
+
+            <Button x:Name="btnTimer"
+            Width="50"
+            Click="btnTimer_Click"
+            Background="{x:Null}"
+            BorderBrush="{x:Null}"
+            Margin="25"
+            HorizontalContentAlignment="Center"
+            VerticalContentAlignment="Center"
+            Height="50">
+                <Image Source="/Resources/Timer.png"/>
+            </Button>
+
+        </WrapPanel>
+
+
+        <ListView x:Name="LvList" 
+          Grid.Row="1"
+          Grid.Column="1"
+          Width="1000"
+          HorizontalAlignment="Left"
+          HorizontalContentAlignment="Center"
+          BorderBrush="{x:Null}"
+          d:ItemsSource="{d:SampleData ItemCount=7}"
+          ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+          ScrollViewer.VerticalScrollBarVisibility="Hidden">
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel/>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Border BorderBrush="#0369A1"
+            BorderThickness="3"
+            HorizontalAlignment="Center"
+            Width="900"
+            Padding="10 0 0 0"
+            Height="90">
+                        <StackPanel Orientation="Horizontal"
+                                VerticalAlignment="Center">
+                            <TextBlock Text="{Binding Task.Title}"
+                                   FontSize="18"
+                                   FontWeight="Light"
+                                   Margin="10 0 0 0"/>
+
+                            <TextBlock Text="{Binding Employeee.LastName}"
+                                   FontSize="18"
+                                   FontWeight="Light"
+                                   Margin="10 0 0 0"/>
+                            <TextBlock Text="{Binding TimeStart}"
+                                   FontSize="18"
+                                   FontWeight="Light"
+                                   Margin="10 0 0 0"/>
+                            <TextBlock Text="{Binding TimeEnd}"
+                                    FontSize="18"
+                                    FontWeight="Light"
+                                    Margin="10 0 0 0"/>
+                            <TextBlock Text="{Binding HourJob}"
+                                FontSize="18"
+                                FontWeight="Light"
+                                Margin="10 0 0 0"/>
+                        </StackPanel>
+                    </Border>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</Window>
