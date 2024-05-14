@@ -41,6 +41,7 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationFramework.Aero2" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
@@ -66,6 +67,7 @@
     </ApplicationDefinition>
     <Compile Include="ClassHelper\EFClass.cs" />
     <Compile Include="ClassHelper\EmployeeDataClass.cs" />
+    <Compile Include="ClassHelper\TaskClass.cs" />
     <Compile Include="DB\Employee.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -120,6 +122,9 @@
     <Compile Include="DB\PR_InfoTask_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="DB\PR_MyTask_Result.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="DB\PR_ProjectInfo_Result.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -153,8 +158,20 @@
     <Compile Include="DB\Timer.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="DB\VW_InfoProjectTask.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\VW_JobInfo.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DB\VW_Resource.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Windows\AddEditEmployeeWindow.xaml.cs">
       <DependentUpon>AddEditEmployeeWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\AddEditTaskWindow.xaml.cs">
+      <DependentUpon>AddEditTaskWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\AuthorizationWindow.xaml.cs">
       <DependentUpon>AuthorizationWindow.xaml</DependentUpon>
@@ -170,6 +187,10 @@
       <DependentUpon>LKWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="Windows\AddEditEmployeeWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\AddEditTaskWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -235,6 +256,7 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
+    <Resource Include="Resources\Edit.png" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

@@ -22,6 +22,7 @@ namespace ProjectManagmentService.Windows
     /// </summary>
     public partial class LKWindow : Window
     {
+
         public LKWindow()
         {
             InitializeComponent();
@@ -32,7 +33,9 @@ namespace ProjectManagmentService.Windows
 
         private void Edit_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-
+            AddEditEmployeeWindow addEditEmployeeWindow = new AddEditEmployeeWindow(ClassHelper.EmployeeDataClass.Employee);
+            addEditEmployeeWindow.Show();
+            this.Close();
         }
 
         private void btnExit_Click(object sender, RoutedEventArgs e)

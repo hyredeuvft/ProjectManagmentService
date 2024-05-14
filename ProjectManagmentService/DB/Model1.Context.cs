@@ -43,6 +43,9 @@ namespace ProjectManagmentService.DB
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Task> Task { get; set; }
         public virtual DbSet<Timer> Timer { get; set; }
+        public virtual DbSet<VW_InfoProjectTask> VW_InfoProjectTask { get; set; }
+        public virtual DbSet<VW_JobInfo> VW_JobInfo { get; set; }
+        public virtual DbSet<VW_Resource> VW_Resource { get; set; }
     
         [DbFunction("Entities", "F_ReturnEmployeeSalary")]
         public virtual IQueryable<F_ReturnEmployeeSalary_Result> F_ReturnEmployeeSalary(Nullable<System.DateTime> dateStart, Nullable<System.DateTime> dateEnd, string email)
@@ -222,6 +225,15 @@ namespace ProjectManagmentService.DB
         public virtual int sp_upgraddiagrams()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_upgraddiagrams");
+        }
+    
+        public virtual ObjectResult<PR_MyTask_Result> PR_MyTask(Nullable<int> idEmployee)
+        {
+            var idEmployeeParameter = idEmployee.HasValue ?
+                new ObjectParameter("idEmployee", idEmployee) :
+                new ObjectParameter("idEmployee", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<PR_MyTask_Result>("PR_MyTask", idEmployeeParameter);
         }
     }
 }

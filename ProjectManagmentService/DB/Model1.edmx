@@ -164,6 +164,49 @@
           <Property Name="HourJob" Type="decimal" Precision="8" Scale="2" />
           <Property Name="IdTask" Type="int" />
         </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "ProjectManagmentService.dbo.VW_InfoProjectTask" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="VW_InfoProjectTask">
+          <Key>
+            <PropertyRef Name="Title" />
+            <PropertyRef Name="DateStart" />
+            <PropertyRef Name="DateEnd" />
+          </Key>
+          <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ResponsiblePerson" Type="nvarchar" MaxLength="53" />
+          <Property Name="DateStart" Type="datetime" Nullable="false" />
+          <Property Name="DateEnd" Type="datetime" Nullable="false" />
+          <Property Name="Budget" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="Task" Type="varchar" MaxLength="25" />
+          <Property Name="StageTitle" Type="nvarchar" MaxLength="50" />
+          <Property Name="Skill" Type="nvarchar" MaxLength="4000" />
+          <Property Name="IsClose" Type="varchar" MaxLength="9" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "ProjectManagmentService.dbo.VW_JobInfo" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="VW_JobInfo">
+          <Key>
+            <PropertyRef Name="FullName" />
+            <PropertyRef Name="Phone" />
+          </Key>
+          <Property Name="FullName" Type="nvarchar" MaxLength="152" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="30" />
+          <Property Name="Phone" Type="char" MaxLength="11" Nullable="false" />
+          <Property Name="CountTask" Type="int" />
+          <Property Name="CountHour" Type="decimal" Precision="38" Scale="2" />
+          <Property Name="HourlyRate" Type="decimal" Precision="6" Scale="2" />
+          <Property Name="Salary" Type="decimal" Precision="38" Scale="4" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "ProjectManagmentService.dbo.VW_Resource" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="VW_Resource">
+          <Key>
+            <PropertyRef Name="Title" />
+          </Key>
+          <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Count" Type="int" />
+          <Property Name="Projects" Type="nvarchar(max)" />
+        </EntityType>
         <Association Name="FK_Employee_Gender">
           <End Role="Gender" Type="Self.Gender" Multiplicity="1" />
           <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
@@ -456,6 +499,9 @@
           <Parameter Name="Title" Type="nvarchar" Mode="In" />
           <Parameter Name="IdTask" Type="int" Mode="In" />
         </Function>
+        <Function Name="PR_MyTask" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idEmployee" Type="int" Mode="In" />
+        </Function>
         <Function Name="PR_ProjectInfo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="INN" Type="char" Mode="In" />
           <Parameter Name="Title" Type="nvarchar" Mode="In" />
@@ -508,6 +554,37 @@
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Task" EntityType="Self.Task" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Timer" EntityType="Self.Timer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VW_InfoProjectTask" EntityType="Self.VW_InfoProjectTask" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VW_InfoProjectTask].[Title] AS [Title], 
+    [VW_InfoProjectTask].[ResponsiblePerson] AS [ResponsiblePerson], 
+    [VW_InfoProjectTask].[DateStart] AS [DateStart], 
+    [VW_InfoProjectTask].[DateEnd] AS [DateEnd], 
+    [VW_InfoProjectTask].[Budget] AS [Budget], 
+    [VW_InfoProjectTask].[Task] AS [Task], 
+    [VW_InfoProjectTask].[StageTitle] AS [StageTitle], 
+    [VW_InfoProjectTask].[Skill] AS [Skill], 
+    [VW_InfoProjectTask].[IsClose] AS [IsClose]
+    FROM [dbo].[VW_InfoProjectTask] AS [VW_InfoProjectTask]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VW_JobInfo" EntityType="Self.VW_JobInfo" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VW_JobInfo].[FullName] AS [FullName], 
+    [VW_JobInfo].[Email] AS [Email], 
+    [VW_JobInfo].[Phone] AS [Phone], 
+    [VW_JobInfo].[CountTask] AS [CountTask], 
+    [VW_JobInfo].[CountHour] AS [CountHour], 
+    [VW_JobInfo].[HourlyRate] AS [HourlyRate], 
+    [VW_JobInfo].[Salary] AS [Salary]
+    FROM [dbo].[VW_JobInfo] AS [VW_JobInfo]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VW_Resource" EntityType="Self.VW_Resource" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VW_Resource].[Title] AS [Title], 
+    [VW_Resource].[Count] AS [Count], 
+    [VW_Resource].[Projects] AS [Projects]
+    FROM [dbo].[VW_Resource] AS [VW_Resource]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK_Employee_Gender" Association="Self.FK_Employee_Gender">
             <End Role="Gender" EntitySet="Gender" />
             <End Role="Employee" EntitySet="Employee" />
@@ -764,6 +841,12 @@
             <End Role="Task" EntitySet="Task" />
             <End Role="Timer" EntitySet="Timer" />
           </AssociationSet>
+          <EntitySet Name="VW_InfoProjectTask" EntityType="ProjectManagmentServiceModel.VW_InfoProjectTask" />
+          <EntitySet Name="VW_JobInfo" EntityType="ProjectManagmentServiceModel.VW_JobInfo" />
+          <EntitySet Name="VW_Resource" EntityType="ProjectManagmentServiceModel.VW_Resource" />
+          <FunctionImport Name="PR_MyTask" ReturnType="Collection(ProjectManagmentServiceModel.PR_MyTask_Result)">
+            <Parameter Name="idEmployee" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="PR_ActiveTask_Result">
           <Property Type="String" Name="Title" Nullable="true" MaxLength="50" />
@@ -1224,6 +1307,48 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="VW_InfoProjectTask">
+          <Key>
+            <PropertyRef Name="Title" />
+            <PropertyRef Name="DateStart" />
+            <PropertyRef Name="DateEnd" />
+          </Key>
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ResponsiblePerson" Type="String" MaxLength="53" FixedLength="false" Unicode="true" />
+          <Property Name="DateStart" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateEnd" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Budget" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="Task" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="StageTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Skill" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="IsClose" Type="String" MaxLength="9" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="VW_JobInfo">
+          <Key>
+            <PropertyRef Name="FullName" />
+            <PropertyRef Name="Phone" />
+          </Key>
+          <Property Name="FullName" Type="String" Nullable="false" MaxLength="152" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" Nullable="false" MaxLength="11" FixedLength="true" Unicode="false" />
+          <Property Name="CountTask" Type="Int32" />
+          <Property Name="CountHour" Type="Decimal" Precision="38" Scale="2" />
+          <Property Name="HourlyRate" Type="Decimal" Precision="6" Scale="2" />
+          <Property Name="Salary" Type="Decimal" Precision="38" Scale="4" />
+        </EntityType>
+        <EntityType Name="VW_Resource">
+          <Key>
+            <PropertyRef Name="Title" />
+          </Key>
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Count" Type="Int32" />
+          <Property Name="Projects" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <ComplexType Name="PR_MyTask_Result">
+          <Property Type="String" Name="ProjectTitle" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="TaskTitle" Nullable="false" MaxLength="50" />
+          <Property Type="DateTime" Name="DateEnd" Nullable="false" Precision="23" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1505,6 +1630,52 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="VW_InfoProjectTask">
+            <EntityTypeMapping TypeName="ProjectManagmentServiceModel.VW_InfoProjectTask">
+              <MappingFragment StoreEntitySet="VW_InfoProjectTask">
+                <ScalarProperty Name="IsClose" ColumnName="IsClose" />
+                <ScalarProperty Name="Skill" ColumnName="Skill" />
+                <ScalarProperty Name="StageTitle" ColumnName="StageTitle" />
+                <ScalarProperty Name="Task" ColumnName="Task" />
+                <ScalarProperty Name="Budget" ColumnName="Budget" />
+                <ScalarProperty Name="DateEnd" ColumnName="DateEnd" />
+                <ScalarProperty Name="DateStart" ColumnName="DateStart" />
+                <ScalarProperty Name="ResponsiblePerson" ColumnName="ResponsiblePerson" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VW_JobInfo">
+            <EntityTypeMapping TypeName="ProjectManagmentServiceModel.VW_JobInfo">
+              <MappingFragment StoreEntitySet="VW_JobInfo">
+                <ScalarProperty Name="Salary" ColumnName="Salary" />
+                <ScalarProperty Name="HourlyRate" ColumnName="HourlyRate" />
+                <ScalarProperty Name="CountHour" ColumnName="CountHour" />
+                <ScalarProperty Name="CountTask" ColumnName="CountTask" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VW_Resource">
+            <EntityTypeMapping TypeName="ProjectManagmentServiceModel.VW_Resource">
+              <MappingFragment StoreEntitySet="VW_Resource">
+                <ScalarProperty Name="Projects" ColumnName="Projects" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="PR_MyTask" FunctionName="Хранилище ProjectManagmentServiceModel.PR_MyTask">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ProjectManagmentServiceModel.PR_MyTask_Result">
+                <ScalarProperty Name="ProjectTitle" ColumnName="ProjectTitle" />
+                <ScalarProperty Name="TaskTitle" ColumnName="TaskTitle" />
+                <ScalarProperty Name="DateEnd" ColumnName="DateEnd" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

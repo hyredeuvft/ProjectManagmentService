@@ -40,6 +40,9 @@
         <AssociationConnector Association="ProjectManagmentServiceModel.FK_SkillProject_Skill" />
         <AssociationConnector Association="ProjectManagmentServiceModel.FK_Task_Stage" />
         <AssociationConnector Association="ProjectManagmentServiceModel.FK_Timer_Task" />
+        <EntityTypeShape EntityType="ProjectManagmentServiceModel.VW_InfoProjectTask" Width="1.5" PointX="8.375" PointY="0.75" />
+        <EntityTypeShape EntityType="ProjectManagmentServiceModel.VW_JobInfo" Width="1.5" PointX="8.375" PointY="4.75" />
+        <EntityTypeShape EntityType="ProjectManagmentServiceModel.VW_Resource" Width="1.5" PointX="3.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

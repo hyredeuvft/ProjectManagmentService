@@ -31,6 +31,8 @@
                          Background="#FFFFFF"
                          BorderBrush="#FFFFFF"
                          Width="300"
+                         FontSize="18"
+                         TextChanged="tbSearch_TextChanged"
                          Style="{StaticResource tbxStyle}">
                     <TextBox.Resources>
                         <Style TargetType="Border">
@@ -39,12 +41,25 @@
                     </TextBox.Resources>
                 </TextBox>
 
+                <Button x:Name="btnEdit"
+                        Width="50"
+                        HorizontalAlignment="Left"
+                        Click="btnEdit_Click"
+                        Background="{x:Null}"
+                        BorderBrush="{x:Null}"
+                        Margin="5"
+                        HorizontalContentAlignment="Center"
+                        VerticalContentAlignment="Center"
+                        Height="50">
+                    <Image Source="/Resources/Edit.png"/>
+                </Button>
+
                 <Button x:Name="btnLk"
                         Width="50"
                         Background="{x:Null}"
                         BorderBrush="{x:Null}"
                         HorizontalAlignment="Left"
-                        Margin="750 0 0 0"
+                        Margin="700 0 0 0"
                         Click="btnLk_Click"
                         Height="50">
                     <Image Source="/Resources/lk.png"/>
@@ -60,14 +75,57 @@
                    Grid.ColumnSpan="2"
                    Foreground="#FFFFFF"
                    Style="{StaticResource lStyle}"/>
-
-
+        
 
         <WrapPanel Grid.Column="0"
                    Grid.Row="1"
            Background="#062341">
 
         </WrapPanel>
+
+        
+        <ListView x:Name="LvList" 
+                  Grid.Row="1"
+                  Grid.Column="1"
+                  Width="1000"
+                  HorizontalAlignment="Left"
+                  HorizontalContentAlignment="Center"
+                  BorderBrush="{x:Null}"
+                  d:ItemsSource="{d:SampleData ItemCount=7}"
+                  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                  ScrollViewer.VerticalScrollBarVisibility="Hidden">
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapPanel/>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Border BorderBrush="#0369A1"
+                    BorderThickness="3"
+                    HorizontalAlignment="Center"
+                    Width="900"
+                    Padding="10 0 0 0"
+                            
+                    Height="90">
+                        <StackPanel>
+                            
+
+                            <TextBlock Text="{Binding Title}"
+                   FontSize="18"
+                   FontWeight="Light"
+                   Margin="10 0 0 0"/>
+
+                            <TextBlock Text="{Binding DateEnd}"
+                   FontSize="18"
+                   FontWeight="Light"
+                   Margin="10 0 0 0"/>
+                        </StackPanel>
+                    </Border>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
 
     </Grid>
 </Window>

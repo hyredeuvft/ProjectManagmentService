@@ -32,7 +32,16 @@
             <Setter Property="Width" Value="460"/>
             <Setter Property="Height" Value="90"/>
         </Style>
-        
+
+        <Style x:Key="rbStyle" TargetType="RadioButton">
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="32"/>
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+
         <!--TextBox/PasswordBox-->
         <Style x:Key="tbxStyle" TargetType="TextBox">
             <Setter Property="Background" Value="#E0F2FE"/>
