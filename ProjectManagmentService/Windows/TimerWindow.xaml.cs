@@ -31,6 +31,7 @@ namespace ProjectManagmentService.Windows
             if (EmployeeDataClass.Employee.IdPost == 3)
             {
                 btnEdit.Visibility = Visibility.Collapsed;
+                btnStatistics.Visibility = Visibility.Collapsed;
             }
             GetSortList();
         }
@@ -39,7 +40,6 @@ namespace ProjectManagmentService.Windows
         {
             List<DB.Timer> timers = new List<DB.Timer>();
             timers = EFClass.Context.Timer.ToList();
-            timers = timers.Where(i => i.Task.Title.Contains(tbSearch.Text) || i.Employee.LastName.Contains(tbSearch.Text)).ToList();
 
             LvList.ItemsSource = timers;
         }
@@ -105,6 +105,12 @@ namespace ProjectManagmentService.Windows
             TimerWindow timerWindow = new TimerWindow();
             timerWindow.Show();
             this.Close();
+        }
+
+        private void btnStatistics_Click(object sender, RoutedEventArgs e)
+        {
+            StatisticsWindow statisticsWindow = new StatisticsWindow();
+            statisticsWindow.ShowDialog();
         }
     }
 }

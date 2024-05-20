@@ -93,6 +93,11 @@
                     VerticalContentAlignment="Center"
                     Height="50">
                    <Image Source="/Resources/Employee.png"/>
+                <Button.ToolTip>
+                    <ToolTip>
+                        Сотрудники
+                    </ToolTip>
+                </Button.ToolTip>
             </Button>
 
             <Button x:Name="btnProject"
@@ -105,6 +110,11 @@
                     VerticalContentAlignment="Center"
                     Height="50">
                 <Image Source="/Resources/Project.png"/>
+                <Button.ToolTip>
+                    <ToolTip>
+                        Проекты
+                    </ToolTip>
+                </Button.ToolTip>
             </Button>
 
             <Button x:Name="btnTask"
@@ -117,6 +127,11 @@
                     VerticalContentAlignment="Center"
                     Height="50">
                 <Image Source="/Resources/Task.png"/>
+                <Button.ToolTip>
+                    <ToolTip>
+                        Задачи
+                    </ToolTip>
+                </Button.ToolTip>
             </Button>
 
             <Button x:Name="btnEntity"
@@ -129,6 +144,11 @@
                     VerticalContentAlignment="Center"
                     Height="50">
                 <Image Source="/Resources/Entity.png"/>
+                <Button.ToolTip>
+                    <ToolTip>
+                        Заказчики
+                    </ToolTip>
+                </Button.ToolTip>
             </Button>
 
             <Button x:Name="btnTimer"
@@ -141,6 +161,28 @@
                     VerticalContentAlignment="Center"
                     Height="50">
                 <Image Source="/Resources/Timer.png"/>
+                <Button.ToolTip>
+                    <ToolTip>
+                        Трудозатраты
+                    </ToolTip>
+                </Button.ToolTip>
+            </Button>
+
+            <Button x:Name="btnStatistics"
+                    Width="50"
+                    Click="btnStatistics_Click"
+                    Background="{x:Null}"
+                    BorderBrush="{x:Null}"
+                    Margin="25"
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    Height="50">
+                <Image Source="/Resources/statistika.png"/>
+                <Button.ToolTip>
+                    <ToolTip>
+                        Статискика "Количество отработанных часов"
+                    </ToolTip>
+                </Button.ToolTip>
             </Button>
 
         </WrapPanel>

@@ -41,6 +41,11 @@ namespace ProjectManagmentService.Windows
 
             TaskClass.MyIdTask = Context.Task.Last().IdTask + 1;
             MyIdTask = ClassHelper.TaskClass.MyIdTask;
+
+            if (EmployeeDataClass.Employee.IdPost == 3)
+            {
+                btnStatistics.Visibility = Visibility.Collapsed;
+            }
         }
         
         public AddEditTaskWindow(DB.Task task)
@@ -70,6 +75,11 @@ namespace ProjectManagmentService.Windows
 
             TaskClass.MyIdTask = task.IdTask;
             MyIdTask = ClassHelper.TaskClass.MyIdTask;
+
+            if (EmployeeDataClass.Employee.IdPost == 3)
+            {
+                btnStatistics.Visibility = Visibility.Collapsed;
+            }
         }
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
@@ -176,6 +186,12 @@ namespace ProjectManagmentService.Windows
             TimerWindow timerWindow = new TimerWindow();
             timerWindow.Show();
             this.Close();
+        }
+
+        private void btnStatistics_Click(object sender, RoutedEventArgs e)
+        {
+            StatisticsWindow statisticsWindow = new StatisticsWindow();
+            statisticsWindow.ShowDialog();
         }
     }
 }

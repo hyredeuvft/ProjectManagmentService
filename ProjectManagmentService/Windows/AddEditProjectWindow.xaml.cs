@@ -43,6 +43,11 @@ namespace ProjectManagmentService.Windows
             cmbStage.ItemsSource = EFClass.Context.Stage.ToList();
             cmbStage.DisplayMemberPath = "Title";
             cmbStage.SelectedIndex = 0;
+
+            if (EmployeeDataClass.Employee.IdPost == 3)
+            {
+                btnStatistics.Visibility = Visibility.Collapsed;
+            }
         }
 
         public AddEditProjectWindow(Project project)
@@ -74,6 +79,11 @@ namespace ProjectManagmentService.Windows
 
             isChange = true;
             editProject = project;
+
+            if (EmployeeDataClass.Employee.IdPost == 3)
+            {
+                btnStatistics.Visibility = Visibility.Collapsed;
+            }
         }
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
@@ -163,6 +173,12 @@ namespace ProjectManagmentService.Windows
             TimerWindow timerWindow = new TimerWindow();
             timerWindow.Show();
             this.Close();
+        }
+
+        private void btnStatistics_Click(object sender, RoutedEventArgs e)
+        {
+            StatisticsWindow statisticsWindow = new StatisticsWindow();
+            statisticsWindow.ShowDialog();
         }
     }
 }

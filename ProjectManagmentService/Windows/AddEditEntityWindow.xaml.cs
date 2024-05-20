@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 using ProjectManagmentService.Windows;
 using ProjectManagmentService.DB;
 using static ProjectManagmentService.ClassHelper.EFClass;
+using ProjectManagmentService.ClassHelper;
 
 namespace ProjectManagmentService.Windows
 {
@@ -28,6 +29,10 @@ namespace ProjectManagmentService.Windows
         public AddEditEntityWindow()
         {
             InitializeComponent();
+            if (EmployeeDataClass.Employee.IdPost == 3)
+            {
+                btnStatistics.Visibility = Visibility.Collapsed;
+            }
         }
 
         public AddEditEntityWindow(Entity entity)
@@ -47,6 +52,11 @@ namespace ProjectManagmentService.Windows
 
             isChange = true;
             editEntity = entity;
+
+            if (EmployeeDataClass.Employee.IdPost == 3)
+            {
+                btnStatistics.Visibility = Visibility.Collapsed;
+            }
         }
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
@@ -126,6 +136,12 @@ namespace ProjectManagmentService.Windows
             TimerWindow timerWindow = new TimerWindow();
             timerWindow.Show();
             this.Close();
+        }
+
+        private void btnStatistics_Click(object sender, RoutedEventArgs e)
+        {
+            StatisticsWindow statisticsWindow = new StatisticsWindow();
+            statisticsWindow.ShowDialog();
         }
     }
 }

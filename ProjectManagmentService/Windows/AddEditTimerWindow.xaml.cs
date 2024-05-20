@@ -37,6 +37,10 @@ namespace ProjectManagmentService.Windows
             cmbTask.DisplayMemberPath = "Title";
             cmbTask.SelectedIndex = 0;
 
+            if (EmployeeDataClass.Employee.IdPost == 3)
+            {
+                btnStatistics.Visibility = Visibility.Collapsed;
+            }
         }
 
         public AddEditTimerWindow(Timer timer)
@@ -57,6 +61,11 @@ namespace ProjectManagmentService.Windows
 
             isChange = true;
             editTimer = timer;
+
+            if (EmployeeDataClass.Employee.IdPost == 3)
+            {
+                btnStatistics.Visibility = Visibility.Collapsed;
+            }
         }
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
@@ -124,6 +133,12 @@ namespace ProjectManagmentService.Windows
             TimerWindow timerWindow = new TimerWindow();
             timerWindow.Show();
             this.Close();
+        }
+
+        private void btnStatistics_Click(object sender, RoutedEventArgs e)
+        {
+            StatisticsWindow statisticsWindow = new StatisticsWindow();
+            statisticsWindow.ShowDialog();
         }
     }
 }

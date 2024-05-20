@@ -31,6 +31,7 @@ namespace ProjectManagmentService.Windows
             if (EmployeeDataClass.Employee.IdPost == 3)
             {
                 btnEdit.Visibility = Visibility.Collapsed;
+                btnStatistics.Visibility = Visibility.Collapsed;
             }
             GetSortList();
         }
@@ -105,6 +106,12 @@ namespace ProjectManagmentService.Windows
             TimerWindow timerWindow = new TimerWindow();
             timerWindow.Show();
             this.Close();
+        }
+
+        private void btnStatistics_Click(object sender, RoutedEventArgs e)
+        {
+            StatisticsWindow statisticsWindow = new StatisticsWindow();
+            statisticsWindow.ShowDialog();
         }
     }
 }

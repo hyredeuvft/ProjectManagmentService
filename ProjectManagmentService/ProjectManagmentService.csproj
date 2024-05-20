@@ -42,6 +42,12 @@
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="PresentationFramework.Aero2" />
+    <Reference Include="Syncfusion.Licensing, Version=25.2462.4.0, Culture=neutral, PublicKeyToken=632609b4d040f6b4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.Licensing.25.2.4\lib\net462\Syncfusion.Licensing.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.SfChart.WPF, Version=25.2462.4.0, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.SfChart.WPF.25.2.4\lib\net462\Syncfusion.SfChart.WPF.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
@@ -204,6 +210,9 @@
     <Compile Include="Windows\ProjectWindow.xaml.cs">
       <DependentUpon>ProjectWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\StatisticsWindow.xaml.cs">
+      <DependentUpon>StatisticsWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\TaskWindow.xaml.cs">
       <DependentUpon>TaskWindow.xaml</DependentUpon>
     </Compile>
@@ -251,6 +260,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\ProjectWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\StatisticsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -312,6 +325,7 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
+    <Resource Include="Resources\statistika.png" />
     <Resource Include="Resources\Timer.png" />
     <Resource Include="Resources\Entity.png" />
     <Resource Include="Resources\Task.png" />

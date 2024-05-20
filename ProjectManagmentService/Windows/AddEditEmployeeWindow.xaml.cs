@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 using ProjectManagmentService.Windows;
 using ProjectManagmentService.DB;
 using static ProjectManagmentService.ClassHelper.EFClass;
+using ProjectManagmentService.ClassHelper;
 
 namespace ProjectManagmentService.Windows
 {
@@ -36,6 +37,11 @@ namespace ProjectManagmentService.Windows
             cmbPost.ItemsSource = Context.Post.ToList();
             cmbPost.DisplayMemberPath = "Title";
             cmbPost.SelectedIndex = 0;
+
+            if (EmployeeDataClass.Employee.IdPost == 3)
+            {
+                btnStatistics.Visibility = Visibility.Collapsed;
+            }
         }
 
         public AddEditEmployeeWindow(Employee employee)
@@ -67,6 +73,11 @@ namespace ProjectManagmentService.Windows
 
             isChange = true;
             editEmployee = employee;
+
+            if (EmployeeDataClass.Employee.IdPost == 3)
+            {
+                btnStatistics.Visibility = Visibility.Collapsed;
+            }
         }
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
@@ -158,6 +169,12 @@ namespace ProjectManagmentService.Windows
             TimerWindow timerWindow = new TimerWindow();
             timerWindow.Show();
             this.Close();
+        }
+
+        private void btnStatistics_Click(object sender, RoutedEventArgs e)
+        {
+            StatisticsWindow statisticsWindow = new StatisticsWindow();
+            statisticsWindow.ShowDialog();
         }
     }
 }
