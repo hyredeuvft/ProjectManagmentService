@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjectManagmentService.Windows"
         mc:Ignorable="d"
-        Title="AddEditEmployeeWindow" Height="450" Width="800"
+        Title="Изменение данных сотрудника" Height="450" Width="800"
             WindowStartupLocation="CenterScreen"
     WindowState="Maximized"
     xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2">
@@ -329,9 +329,8 @@
            Style="{StaticResource lStyle}"/>
         <WrapPanel Grid.Column="0"
            Grid.Row="1"
-           
            HorizontalAlignment="Center"
-   Background="#062341">
+           Background="#062341">
 
             <Button x:Name="btnEmployee"
             Width="50"
@@ -437,84 +436,113 @@
 
         </WrapPanel>
         <StackPanel Grid.Row="1"
-                HorizontalAlignment="Center"
-                Margin="35"
+                HorizontalAlignment="Left"
+                Margin="155 35 0 0"
                 Grid.Column="1">
+            <Label Content="Фамилия сотрудника"
+                Style="{StaticResource lStyle2}"/>
             <TextBox x:Name="tbLastName"
                  Style="{StaticResource tbxStyle}"
                  FontSize="18"
                  Height="50"/>
+            <Label Content="Имя сотрудника"
+    Style="{StaticResource lStyle2}"/>
             <TextBox x:Name="tbFirstName"
                  Style="{StaticResource tbxStyle}"
                  FontSize="18"
                  Height="50"/>
+            <Label Content="Отчество сотрудника"
+    Style="{StaticResource lStyle2}"/>
             <TextBox x:Name="tbPatronymic"
                  Style="{StaticResource tbxStyle}"
                  FontSize="18"
                  Height="50"/>
+            <Label Content="Дата рождения сотрудника"
+    Style="{StaticResource lStyle2}"/>
             <DatePicker x:Name="dpBirthday"
                     Margin="5"
                     FontSize="18"
                     Height="40"/>
+            <Label Content="Дата регистрации сотрудника"
+    Style="{StaticResource lStyle2}"/>
             <DatePicker x:Name="dpRegistrationDay"
                     Margin="5"
                     FontSize="18"
                     Height="40"/>
+            <Label Content="Номер телефона сотрудника"
+    Style="{StaticResource lStyle2}"/>
             <TextBox x:Name="tbPhone"
                  Style="{StaticResource tbxStyle}"
                  FontSize="18"
                  Height="50"/>
-            <TextBox x:Name="tbEmail"
-                 Style="{StaticResource tbxStyle}"
-                 FontSize="18"
-                 Height="50"/>
-            <ComboBox Style="{DynamicResource ComboBoxStyle1}" 
-                  x:Name="cmbGender"
-                  VerticalContentAlignment="Center"
-                  FontSize="18"
-                  Padding="10"
-                  Margin="5"
-                  Height="50"/>
-            <ComboBox Style="{DynamicResource ComboBoxStyle1}" 
-                  x:Name="cmbPost"
-                  Margin="5"
-                  VerticalContentAlignment="Center"
-                  Padding="10"
-                  FontSize="18"
-                  Height="50"/>
-            <RadioButton GroupName="IsBlock" 
-                     x:Name="rbTrue"
-                     FontSize="18"
-                     Content="Заблокировано"
-                     Style="{StaticResource rbStyle}"/>
-            <RadioButton GroupName="IsBlock" 
-                     x:Name="rbFalse"
-                     FontSize="18"
-                     Content="Не заблокировано"
-                     Style="{StaticResource rbStyle}"/>
-            <TextBox x:Name="tbLogin"
-                 Style="{StaticResource tbxStyle}"
-                 FontSize="18"
-                 Height="50"/>
-            <PasswordBox x:Name="pbPassword"
-                     Style="{StaticResource pbStyle}"
-                     FontSize="18"
-                     Height="50"/>
-            <Button x:Name="btnSave"
-                Style="{StaticResource btnStyle}"
-                Width="150"
-                Height="50"
-                FontSize="24"
-                VerticalAlignment="Bottom"
-                Margin="30"
-                Click="btnSave_Click"
-                Content="Сохранить"  >
-                <Button.Resources>
-                    <Style TargetType="Border">
-                        <Setter Property="CornerRadius" Value="10"/>
-                    </Style>
-                </Button.Resources>
-            </Button>
         </StackPanel>
+        <StackPanel Grid.Row="1"
+                HorizontalAlignment="Right"
+                Margin="0 35 155 0"
+                Grid.Column="1">
+            <Label Content="Почта сотрудника"
+Style="{StaticResource lStyle2}"/>
+            <TextBox x:Name="tbEmail"
+             Style="{StaticResource tbxStyle}"
+             FontSize="18"
+             Height="50"/>
+            <Label Content="Пол сотрудника"
+Style="{StaticResource lStyle2}"/>
+            <ComboBox Style="{DynamicResource ComboBoxStyle1}" 
+              x:Name="cmbGender"
+              VerticalContentAlignment="Center"
+              FontSize="18"
+              Padding="10"
+              Margin="5"
+              Height="50"/>
+            <Label Content="Должность сотрудника"
+Style="{StaticResource lStyle2}"/>
+            <ComboBox Style="{DynamicResource ComboBoxStyle1}" 
+              x:Name="cmbPost"
+              Margin="5"
+              VerticalContentAlignment="Center"
+              Padding="10"
+              FontSize="18"
+              Height="50"/>
+            <Label Content="Логин сотрудника"
+Style="{StaticResource lStyle2}"/>
+            <TextBox x:Name="tbLogin"
+ Style="{StaticResource tbxStyle}"
+ FontSize="18"
+ Height="50"/>
+            <Label Content="Пароль сотрудника"
+Style="{StaticResource lStyle2}"/>
+            <PasswordBox x:Name="pbPassword"
+     Style="{StaticResource pbStyle}"
+     FontSize="18"
+     Height="50"/>
+            <RadioButton GroupName="IsBlock" 
+                 x:Name="rbTrue"
+                 FontSize="18"
+                 Content="Заблокировано"
+                 Style="{StaticResource rbStyle}"/>
+            <RadioButton GroupName="IsBlock" 
+                 x:Name="rbFalse"
+                 FontSize="18"
+                 Content="Не заблокировано"
+                 Style="{StaticResource rbStyle}"/>
+        </StackPanel>
+        <Button x:Name="btnSave"
+    Style="{StaticResource btnStyle}"
+    Width="150"
+    Height="50"
+    FontSize="24"
+                Grid.Column="1"
+                Grid.Row="1"
+    VerticalAlignment="Bottom"
+    Margin="130"
+    Click="btnSave_Click"
+    Content="Сохранить"  >
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="10"/>
+                </Style>
+            </Button.Resources>
+        </Button>
     </Grid>
 </Window>

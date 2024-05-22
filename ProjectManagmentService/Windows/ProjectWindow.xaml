@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjectManagmentService.Windows"
         mc:Ignorable="d"
-        Title="ProjectWindow" Height="450" Width="800"
+        Title="Список проектов" Height="450" Width="800"
                 WindowStartupLocation="CenterScreen"
 WindowState="Maximized">
     <Grid>
@@ -67,7 +67,7 @@ WindowState="Maximized">
             </StackPanel>
         </Border>
 
-        <Label Content="Сервис проектного менеджмента"
+        <Label Content="Проекты                      "
            VerticalAlignment="Center"
            HorizontalAlignment="Left"
            Margin="5"
@@ -79,7 +79,6 @@ WindowState="Maximized">
 
         <WrapPanel Grid.Column="0"
            Grid.Row="1"
-           
            HorizontalAlignment="Center"
    Background="#062341">
 

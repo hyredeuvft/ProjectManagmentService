@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjectManagmentService.Windows"
         mc:Ignorable="d"
-        Title="AddEditTaskWindow" Height="450" Width="800"
+        Title="Изменение данных задачи" Height="450" Width="800"
                     WindowStartupLocation="CenterScreen"
     WindowState="Maximized"
     xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2">
@@ -329,7 +329,6 @@
            Style="{StaticResource lStyle}"/>
         <WrapPanel Grid.Column="0"
            Grid.Row="1"
-           
            HorizontalAlignment="Center"
    Background="#062341">
 
@@ -440,14 +439,20 @@
                 HorizontalAlignment="Center"
                 Margin="35"
                 Grid.Column="1">
+            <Label Content="Название задачи"
+    Style="{StaticResource lStyle2}"/>
             <TextBox x:Name="tbTitle"
                  Style="{StaticResource tbxStyle}"
                  FontSize="18"
                  Height="50"/>
+            <Label Content="Описание задачи"
+Style="{StaticResource lStyle2}"/>
             <TextBox x:Name="tbDescription"
                  Style="{StaticResource tbxStyle}"
                  FontSize="18"
                  Height="50"/>
+            <Label Content="Ответственный за задачу"
+Style="{StaticResource lStyle2}"/>
             <ComboBox Style="{DynamicResource ComboBoxStyle1}" 
       x:Name="cmbResponsiblePerson"
       VerticalContentAlignment="Center"
@@ -455,14 +460,20 @@
       Padding="10"
       Margin="5"
       Height="50"/>
+            <Label Content="Дата начала задачи"
+Style="{StaticResource lStyle2}"/>
             <DatePicker x:Name="dpDateStart"
                     Margin="5"
                     FontSize="18"
                     Height="40"/>
+            <Label Content="Дата окончания задачи"
+Style="{StaticResource lStyle2}"/>
             <DatePicker x:Name="dpDateEnd"
                     Margin="5"
                     FontSize="18"
                     Height="40"/>
+            <Label Content="Этап задачи"
+Style="{StaticResource lStyle2}"/>
             <ComboBox Style="{DynamicResource ComboBoxStyle1}" 
                   x:Name="cmbStage"
                   VerticalContentAlignment="Center"
@@ -470,6 +481,12 @@
                   Padding="10"
                   Margin="5"
                   Height="50"/>
+            <Label Content="Комментарий к задаче"
+Style="{StaticResource lStyle2}"/>
+            <TextBox x:Name="tbComment"
+     Style="{StaticResource tbxStyle}"
+     FontSize="18"
+     Height="50"/>
             <RadioButton GroupName="IsClose" 
                      x:Name="rbTrue"
                      FontSize="18"
@@ -501,18 +518,18 @@
             Orientation="Horizontal"
             Margin="50">
                 <DatePickerTextBox x:Name="dpStart"
-                Margin="5"
+                                   Margin="5"
                                    Text="____________"
-                FontSize="18"
-                Height="40"/>
+                                   FontSize="18"
+                                   Height="40"/>
                 <Button x:Name="btnStart"
-Style="{StaticResource btnStyle}"
-Width="215"
-Height="50"
-FontSize="16"
-Margin="5"
-Content="Зафиксировать время" 
-Click="btnStart_Click" >
+                        Style="{StaticResource btnStyle}"
+                        Width="215"
+                        Height="50"
+                        FontSize="16"
+                        Margin="5"
+                        Content="Зафиксировать время" 
+                        Click="btnStart_Click" >
                     <Button.Resources>
                         <Style TargetType="Border">
                             <Setter Property="CornerRadius" Value="10"/>

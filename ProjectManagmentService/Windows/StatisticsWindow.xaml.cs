@@ -40,7 +40,7 @@ namespace ProjectManagmentService.Windows
         {
             InitializeComponent();
 
-            SfChart chart = new SfChart() { Header = "Количество отработанных часов"};
+            SfChart chart = new SfChart() { Header = "Количество отработанных часов", FontSize = 14 };
 
             //Adding horizontal axis to the chart 
             CategoryAxis primaryAxis = new CategoryAxis();

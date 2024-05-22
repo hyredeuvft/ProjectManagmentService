@@ -6,11 +6,31 @@
         xmlns:local="clr-namespace:ProjectManagmentService.Windows"
         xmlns:syncfusion="clr-namespace:Syncfusion.UI.Xaml.Charts;assembly=Syncfusion.SfChart.WPF"
         mc:Ignorable="d"
-        Title="StatisticsWindow" Height="450" Width="800"
+        Title="Количество отработанных часов" Height="450" Width="800"
             WindowStartupLocation="CenterScreen"
     WindowState="Maximized">
 
     <Grid>
-        
+        <!--<Grid.RowDefinitions>
+            <RowDefinition Height="26*"/>
+            <RowDefinition Height="191*"/>
+        </Grid.RowDefinitions>
+        <Border
+    Height="100"
+    VerticalAlignment="Center"
+    Background="#062341">
+            <Label Content="Количество отработанных часов"
+VerticalAlignment="Center"
+                   FontSize="30"
+HorizontalAlignment="Left"
+Margin="5"
+Grid.Row="0"
+Grid.ColumnSpan="2"
+Foreground="#FFFFFF"
+Style="{StaticResource lStyle}"/>
+        </Border>-->
+
+
+
     </Grid>
 </Window>

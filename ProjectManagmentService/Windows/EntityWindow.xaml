@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjectManagmentService.Windows"
         mc:Ignorable="d"
-        Title="EntityWindow" Height="450" Width="800"
+        Title="Список заказчиков" Height="450" Width="800"
                 WindowStartupLocation="CenterScreen"
 WindowState="Maximized">
     <Grid>
@@ -67,7 +67,7 @@ WindowState="Maximized">
             </StackPanel>
         </Border>
 
-        <Label Content="Сервис проектного менеджмента"
+        <Label Content="Заказчики                    "
            VerticalAlignment="Center"
            HorizontalAlignment="Left"
            Margin="5"
@@ -79,7 +79,6 @@ WindowState="Maximized">
 
         <WrapPanel Grid.Column="0"
            Grid.Row="1"
-           
            HorizontalAlignment="Center"
    Background="#062341">
 
@@ -214,12 +213,12 @@ WindowState="Maximized">
             Height="90">
                         <StackPanel Orientation="Horizontal"
                                 VerticalAlignment="Center">
-                            <TextBlock Text="{Binding INN}"
+                            <TextBlock Text="{Binding Title}"
                                    FontSize="18"
                                    FontWeight="Light"
                                    Margin="10 0 0 0"/>
 
-                            <TextBlock Text="{Binding KPP}"
+                            <TextBlock Text="{Binding INN}"
                                    FontSize="18"
                                    FontWeight="Light"
                                    Margin="10 0 0 0"/>

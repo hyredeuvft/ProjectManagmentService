@@ -39,6 +39,7 @@ namespace ProjectManagmentService.Windows
         {
             InitializeComponent();
 
+            tbTitle.Text = entity.Title;
             tbINN.Text = entity.INN;
             tbKPP.Text = entity.KPP;
             tbOGRN.Text = entity.OGRN;
@@ -61,47 +62,57 @@ namespace ProjectManagmentService.Windows
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-            if (isChange)
+            try
             {
-                editEntity.INN = tbINN.Text;
-                editEntity.KPP = tbKPP.Text;
-                editEntity.OGRN = tbOGRN.Text;
-                editEntity.CheckingAccount = tbCheckingAccount.Text;
-                editEntity.CorrespondentAccount = tbCorrespondentAccount.Text;
-                if (rbTrue.IsChecked == true)
+                if (isChange)
                 {
-                    editEntity.IsBlock = true;
+                    editEntity.Title = tbTitle.Text;
+                    editEntity.INN = tbINN.Text;
+                    editEntity.KPP = tbKPP.Text;
+                    editEntity.OGRN = tbOGRN.Text;
+                    editEntity.CheckingAccount = tbCheckingAccount.Text;
+                    editEntity.CorrespondentAccount = tbCorrespondentAccount.Text;
+                    if (rbTrue.IsChecked == true)
+                    {
+                        editEntity.IsBlock = true;
+                    }
+                    else if (rbFalse.IsChecked == true)
+                    {
+                        editEntity.IsBlock = false;
+                    }
+                    Context.SaveChanges();
+                    MessageBox.Show("Запись успешно обновлена!", "Успех!", MessageBoxButton.OK, MessageBoxImage.Information);
+                    HomeWindow homeWindow = new HomeWindow();
+                    homeWindow.Show();
+                    this.Close();
                 }
-                else if (rbFalse.IsChecked == true)
+                else
                 {
-                    editEntity.IsBlock = false;
+                    Entity entity = new Entity();
+                    entity.Title = tbTitle.Text;
+                    entity.INN = tbINN.Text;
+                    entity.KPP = tbKPP.Text;
+                    entity.OGRN = tbOGRN.Text;
+                    entity.CheckingAccount = tbCheckingAccount.Text;
+                    entity.CorrespondentAccount = tbCorrespondentAccount.Text;
+                    if (rbTrue.IsChecked == true)
+                    {
+                        entity.IsBlock = true;
+                    }
+                    else if (rbFalse.IsChecked == true) { entity.IsBlock = false; }
+                    Context.Entity.Add(entity);
+                    Context.SaveChanges();
+                    MessageBox.Show("Запись успешно добавлена", "Успех!", MessageBoxButton.OK, MessageBoxImage.Information);
+                    HomeWindow homeWindow = new HomeWindow();
+                    homeWindow.Show();
+                    this.Close();
                 }
-                Context.SaveChanges();
-                MessageBox.Show("Запись успешно обновлена!", "Успех!", MessageBoxButton.OK, MessageBoxImage.Information);
-                HomeWindow homeWindow = new HomeWindow();
-                homeWindow.Show();
-                this.Close();
             }
-            else
+            catch (Exception ex)
             {
-                Entity entity = new Entity();
-                entity.INN = tbINN.Text;
-                entity.KPP = tbKPP.Text;
-                entity.OGRN = tbOGRN.Text;
-                entity.CheckingAccount = tbCheckingAccount.Text;
-                entity.CorrespondentAccount = tbCorrespondentAccount.Text;
-                if (rbTrue.IsChecked == true)
-                {
-                    entity.IsBlock = true;
-                }
-                else if (rbFalse.IsChecked == true) { entity.IsBlock = false; }
-                Context.Entity.Add(entity);
-                Context.SaveChanges();
-                MessageBox.Show("Запись успешно добавлена", "Успех!", MessageBoxButton.OK, MessageBoxImage.Information);
-                HomeWindow homeWindow = new HomeWindow();
-                homeWindow.Show();
-                this.Close();
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+            
         }
         private void btnEmployee_Click(object sender, RoutedEventArgs e)
         {

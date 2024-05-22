@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjectManagmentService.Windows"
         mc:Ignorable="d"
-        Title="AddEditEntityWindow" Height="450" Width="800"
+        Title="Изменение данных заказчика" Height="450" Width="800"
                  WindowStartupLocation="CenterScreen"
  WindowState="Maximized"
  xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2">
@@ -329,7 +329,6 @@
         Style="{StaticResource lStyle}"/>
         <WrapPanel Grid.Column="0"
            Grid.Row="1"
-           
            HorizontalAlignment="Center"
    Background="#062341">
 
@@ -440,22 +439,38 @@
              HorizontalAlignment="Center"
              Margin="35"
              Grid.Column="1">
+            <Label Content="Название компании"
+    Style="{StaticResource lStyle2}"/>
+            <TextBox x:Name="tbTitle"
+                     Style="{StaticResource tbxStyle}"
+                     FontSize="18"
+                     Height="50"/>
+            <Label Content="ИНН компании"
+    Style="{StaticResource lStyle2}"/>
             <TextBox x:Name="tbINN"
               Style="{StaticResource tbxStyle}"
               FontSize="18"
               Height="50"/>
+            <Label Content="КПП компании"
+    Style="{StaticResource lStyle2}"/>
             <TextBox x:Name="tbKPP"
               Style="{StaticResource tbxStyle}"
               FontSize="18"
               Height="50"/>
+            <Label Content="ОГРН компании"
+    Style="{StaticResource lStyle2}"/>
             <TextBox x:Name="tbOGRN"
               Style="{StaticResource tbxStyle}"
               FontSize="18"
               Height="50"/>
+            <Label Content="Текущий счет"
+    Style="{StaticResource lStyle2}"/>
             <TextBox x:Name="tbCheckingAccount"
               Style="{StaticResource tbxStyle}"
               FontSize="18"
               Height="50"/>
+            <Label Content="Корреспондентский счёт"
+    Style="{StaticResource lStyle2}"/>
             <TextBox x:Name="tbCorrespondentAccount"
               Style="{StaticResource tbxStyle}"
               FontSize="18"

@@ -50,10 +50,10 @@ namespace ProjectManagmentService.Windows
             lKWindow.ShowDialog();
         }
 
-        private void tbSearch_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            GetSortList();
-        }
+        //private void tbSearch_TextChanged(object sender, TextChangedEventArgs e)
+        //{
+        //    GetSortList();
+        //}
 
         private void btnEdit_Click(object sender, RoutedEventArgs e)
         {

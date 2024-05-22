@@ -38,7 +38,7 @@ namespace ProjectManagmentService.Windows
         {
             List<Project> projects = new List<Project>();
             projects = EFClass.Context.Project.ToList();
-            projects = projects.Where(i => i.Title.Contains(tbSearch.Text) || i.Description.Contains(tbSearch.Text)).ToList();
+            projects = projects.Where(i => i.Title.Contains(tbSearch.Text)).ToList();
 
             LvList.ItemsSource = projects;
         }

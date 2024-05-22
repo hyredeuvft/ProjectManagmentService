@@ -8,7 +8,12 @@
             <Setter Property="FontSize" Value="40"/>
             <Setter Property="FontWeight" Value="Bold"/>
             <Setter Property="HorizontalAlignment" Value="Center"/>
-            
+        </Style>
+
+        <Style x:Key="lStyle2" TargetType="Label">
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="FontWeight" Value="Light"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
         </Style>
 
         <Style x:Key="txtStyle" TargetType="TextBlock">

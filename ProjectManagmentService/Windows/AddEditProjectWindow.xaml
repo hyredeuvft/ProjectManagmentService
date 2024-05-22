@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjectManagmentService.Windows"
         mc:Ignorable="d"
-        Title="AddEditProjectWindow" Height="450" Width="800"
+        Title="Изменение данных проекта" Height="450" Width="800"
                             WindowStartupLocation="CenterScreen"
     WindowState="Maximized"
     xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2">
@@ -329,7 +329,6 @@
            Style="{StaticResource lStyle}"/>
         <WrapPanel Grid.Column="0"
            Grid.Row="1"
-           
            HorizontalAlignment="Center"
    Background="#062341">
 
@@ -437,17 +436,23 @@
 
         </WrapPanel>
         <StackPanel Grid.Row="1"
-                HorizontalAlignment="Center"
-                Margin="35"
+                HorizontalAlignment="Left"
+                Margin="135 35 0 0"
                 Grid.Column="1">
+            <Label Content="Название проекта"
+    Style="{StaticResource lStyle2}"/>
             <TextBox x:Name="tbTitle"
                  Style="{StaticResource tbxStyle}"
                  FontSize="18"
                  Height="50"/>
+            <Label Content="Описание проекта"
+Style="{StaticResource lStyle2}"/>
             <TextBox x:Name="tbDescription"
                  Style="{StaticResource tbxStyle}"
                  FontSize="18"
                  Height="50"/>
+            <Label Content="Заказчик проекта"
+Style="{StaticResource lStyle2}"/>
             <ComboBox Style="{DynamicResource ComboBoxStyle1}" 
                       x:Name="cmbCustomer"
                       VerticalContentAlignment="Center"
@@ -455,6 +460,8 @@
                       Padding="10"
                       Margin="5"
                       Height="50"/>
+            <Label Content="Ответственный за проект"
+Style="{StaticResource lStyle2}"/>
             <ComboBox Style="{DynamicResource ComboBoxStyle1}" 
                       x:Name="cmbResponsiblePerson"
                       VerticalContentAlignment="Center"
@@ -462,18 +469,33 @@
                       Padding="10"
                       Margin="5"
                       Height="50"/>
+            
+        </StackPanel>
+        
+        <StackPanel Grid.Row="1"
+                HorizontalAlignment="Right"
+                Margin="0 35 135 0"
+                Grid.Column="1">
+            <Label Content="Дата начала проекта"
+Style="{StaticResource lStyle2}"/>
             <DatePicker x:Name="dpDateStart"
                     Margin="5"
                     FontSize="18"
                     Height="40"/>
+            <Label Content="Дата окончания проекта"
+Style="{StaticResource lStyle2}"/>
             <DatePicker x:Name="dpDateEnd"
                     Margin="5"
                     FontSize="18"
                     Height="40"/>
+            <Label Content="Бюджет проекта"
+Style="{StaticResource lStyle2}"/>
             <TextBox x:Name="tbBudget"
                      Style="{StaticResource tbxStyle}"
                      FontSize="18"
                      Height="50"/>
+            <Label Content="Этап проекта"
+Style="{StaticResource lStyle2}"/>
             <ComboBox Style="{DynamicResource ComboBoxStyle1}" 
                   x:Name="cmbStage"
                   VerticalContentAlignment="Center"
@@ -491,23 +513,23 @@
                      FontSize="18"
                      Content="Не выполнен"
                      Style="{StaticResource rbStyle}"/>
-
-
-            <Button x:Name="btnSave"
-                Style="{StaticResource btnStyle}"
-                Width="150"
-                Height="50"
-                FontSize="24"
-                VerticalAlignment="Bottom"
-                Margin="30"
-                Click="btnSave_Click"
-                Content="Сохранить"  >
-                <Button.Resources>
-                    <Style TargetType="Border">
-                        <Setter Property="CornerRadius" Value="10"/>
-                    </Style>
-                </Button.Resources>
-            </Button>
         </StackPanel>
+        <Button x:Name="btnSave"
+    Style="{StaticResource btnStyle}"
+    Width="150"
+    Height="50"
+    FontSize="24"
+                Grid.Column="1"
+                Grid.Row="1"
+                Margin="0 0 0 150"
+    VerticalAlignment="Bottom"
+    Click="btnSave_Click"
+    Content="Сохранить"  >
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="10"/>
+                </Style>
+            </Button.Resources>
+        </Button>
     </Grid>
 </Window>

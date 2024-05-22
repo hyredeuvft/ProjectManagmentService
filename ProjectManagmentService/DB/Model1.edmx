@@ -36,6 +36,7 @@
             <PropertyRef Name="IdEntity" />
           </Key>
           <Property Name="IdEntity" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" />
           <Property Name="INN" Type="char" MaxLength="10" Nullable="false" />
           <Property Name="KPP" Type="char" MaxLength="9" Nullable="false" />
           <Property Name="OGRN" Type="char" MaxLength="13" Nullable="false" />
@@ -150,6 +151,7 @@
           <Property Name="ResponsiblePerson" Type="int" Nullable="false" />
           <Property Name="DateStart" Type="datetime" Nullable="false" />
           <Property Name="DateEnd" Type="datetime" Nullable="false" />
+          <Property Name="Comment" Type="nvarchar" MaxLength="250" />
           <Property Name="IdStage" Type="tinyint" Nullable="false" />
           <Property Name="IsClose" Type="bit" Nullable="false" />
         </EntityType>
@@ -845,7 +847,7 @@
           <EntitySet Name="VW_JobInfo" EntityType="ProjectManagmentServiceModel.VW_JobInfo" />
           <EntitySet Name="VW_Resource" EntityType="ProjectManagmentServiceModel.VW_Resource" />
           <FunctionImport Name="PR_MyTask" ReturnType="Collection(ProjectManagmentServiceModel.PR_MyTask_Result)">
-            <Parameter Name="idEmployee" Mode="In" Type="Int32" />
+          <Parameter Name="idEmployee" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="PR_ActiveTask_Result">
@@ -929,6 +931,7 @@
           <Property Name="CorrespondentAccount" Type="String" Nullable="false" MaxLength="20" FixedLength="true" Unicode="false" />
           <Property Name="IsBlock" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Project" Relationship="ProjectManagmentServiceModel.FK_Project_Customer" FromRole="Entity" ToRole="Project" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Gender">
           <Key>
@@ -1065,6 +1068,7 @@
           <NavigationProperty Name="ProjectTask" Relationship="ProjectManagmentServiceModel.FK_ProjectTask_Task1" FromRole="Task" ToRole="ProjectTask" />
           <NavigationProperty Name="Stage" Relationship="ProjectManagmentServiceModel.FK_Task_Stage" FromRole="Task" ToRole="Stage" />
           <NavigationProperty Name="Timer" Relationship="ProjectManagmentServiceModel.FK_Timer_Task" FromRole="Task" ToRole="Timer" />
+          <Property Name="Comment" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Timer">
           <Key>
@@ -1486,6 +1490,7 @@
           <EntitySetMapping Name="Entity">
             <EntityTypeMapping TypeName="ProjectManagmentServiceModel.Entity">
               <MappingFragment StoreEntitySet="Entity">
+                <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="IsBlock" ColumnName="IsBlock" />
                 <ScalarProperty Name="CorrespondentAccount" ColumnName="CorrespondentAccount" />
                 <ScalarProperty Name="CheckingAccount" ColumnName="CheckingAccount" />
@@ -1607,6 +1612,7 @@
           <EntitySetMapping Name="Task">
             <EntityTypeMapping TypeName="ProjectManagmentServiceModel.Task">
               <MappingFragment StoreEntitySet="Task">
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
                 <ScalarProperty Name="IsClose" ColumnName="IsClose" />
                 <ScalarProperty Name="IdStage" ColumnName="IdStage" />
                 <ScalarProperty Name="DateEnd" ColumnName="DateEnd" />

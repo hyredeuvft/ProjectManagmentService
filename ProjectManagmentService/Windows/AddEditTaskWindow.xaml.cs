@@ -39,7 +39,7 @@ namespace ProjectManagmentService.Windows
             cmbStage.DisplayMemberPath = "Title";
             cmbStage.SelectedIndex = 0;
 
-            TaskClass.MyIdTask = Context.Task.Last().IdTask + 1;
+            //TaskClass.MyIdTask = Context.Task.Last().IdTask + 1;
             MyIdTask = ClassHelper.TaskClass.MyIdTask;
 
             if (EmployeeDataClass.Employee.IdPost == 3)
@@ -61,6 +61,7 @@ namespace ProjectManagmentService.Windows
             cmbResponsiblePerson.SelectedItem = Context.Employee.Where(i => i.IdEmployee == task.ResponsiblePerson).FirstOrDefault();
             cmbStage.SelectedItem = Context.Stage.Where(i => i.IdStage == task.IdStage).FirstOrDefault();
             tbTitle.Text = task.Title;
+            tbComment.Text = task.Comment;
             tbDescription.Text = task.Description;
             dpDateStart.Text = task.DateStart.ToString();
             dpDateEnd.Text = task.DateEnd.ToString();
@@ -84,67 +85,76 @@ namespace ProjectManagmentService.Windows
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-            var haveTimer = Context.Timer.Where(i => i.IdTask == MyIdTask).ToList();
-            if (haveTimer.Count > 0)
+            try
             {
-                editTimer = haveTimer.First();
-                editTimer.TimeEnd = Convert.ToDateTime(dpStart.Text);
-                Context.SaveChanges();
+                var haveTimer = Context.Timer.Where(i => i.IdTask == MyIdTask).ToList();
+                if (haveTimer.Count > 0)
+                {
+                    editTimer = haveTimer.First();
+                    editTimer.TimeEnd = Convert.ToDateTime(dpStart.Text);
+                    Context.SaveChanges();
+                }
+                else
+                {
+                    Timer timer = new Timer();
+                    timer.IdEmployee = EmployeeDataClass.Employee.IdEmployee;
+                    timer.IdTask = MyIdTask;
+                    timer.TimeStart = Convert.ToDateTime(dpStart.Text);
+                    Context.Timer.Add(timer);
+                    Context.SaveChanges();
+                }
+                if (isChange)
+                {
+                    editTask.Comment = tbComment.Text;
+                    editTask.Title = tbTitle.Text;
+                    editTask.Description = tbDescription.Text;
+                    editTask.ResponsiblePerson = (cmbResponsiblePerson.SelectedItem as Employee).IdEmployee;
+                    editTask.DateStart = Convert.ToDateTime(dpDateStart.Text);
+                    editTask.DateEnd = Convert.ToDateTime(dpDateEnd.Text);
+                    editTask.IdStage = (cmbStage.SelectedItem as Stage).IdStage;
+                    if (rbTrue.IsChecked == true)
+                    {
+                        editTask.IsClose = true;
+                    }
+                    else if (rbFalse.IsChecked == true)
+                    {
+                        editTask.IsClose = false;
+                    }
+                    Context.SaveChanges();
+                    MessageBox.Show("Запись успешно обновлена!", "Успех!", MessageBoxButton.OK, MessageBoxImage.Information);
+                    HomeWindow homeWindow = new HomeWindow();
+                    homeWindow.Show();
+                    this.Close();
+                }
+                else
+                {
+                    DB.Task task = new DB.Task();
+                    task.Comment = tbComment.Text;
+                    task.Title = tbTitle.Text;
+                    task.Description = tbDescription.Text;
+                    task.ResponsiblePerson = (cmbResponsiblePerson.SelectedItem as Employee).IdEmployee;
+                    task.DateStart = Convert.ToDateTime(dpDateStart.Text);
+                    task.DateEnd = Convert.ToDateTime(dpDateEnd.Text);
+                    task.IdStage = (cmbStage.SelectedItem as Stage).IdStage;
+                    if (rbTrue.IsChecked == true)
+                    {
+                        task.IsClose = true;
+                    }
+                    else if (rbFalse.IsChecked == true)
+                    {
+                        task.IsClose = false;
+                    }
+                    Context.Task.Add(task);
+                    Context.SaveChanges();
+                    MessageBox.Show("Запись успешно добавлена", "Успех!", MessageBoxButton.OK, MessageBoxImage.Information);
+                    HomeWindow homeWindow = new HomeWindow();
+                    homeWindow.Show();
+                    this.Close();
+                }
             }
-            else
+            catch (Exception ex)
             {
-                Timer timer = new Timer();
-                timer.IdEmployee = EmployeeDataClass.Employee.IdEmployee;
-                timer.IdTask = MyIdTask;
-                timer.TimeStart = Convert.ToDateTime(dpStart.Text);
-                Context.Timer.Add(timer);
-                Context.SaveChanges();
-            }
-            if (isChange)
-            {
-                editTask.Title = tbTitle.Text;
-                editTask.Description = tbDescription.Text;
-                editTask.ResponsiblePerson = (cmbResponsiblePerson.SelectedItem as Employee).IdEmployee;
-                editTask.DateStart = Convert.ToDateTime(dpDateStart.Text);
-                editTask.DateEnd = Convert.ToDateTime(dpDateEnd.Text);
-                editTask.IdStage = (cmbStage.SelectedItem as Stage).IdStage;
-                if (rbTrue.IsChecked == true)
-                {
-                    editTask.IsClose = true;
-                }
-                else if (rbFalse.IsChecked == true)
-                {
-                    editTask.IsClose = false;
-                }
-                Context.SaveChanges();
-                MessageBox.Show("Запись успешно обновлена!", "Успех!", MessageBoxButton.OK, MessageBoxImage.Information);
-                HomeWindow homeWindow = new HomeWindow();
-                homeWindow.Show();
-                this.Close();
-            }
-            else
-            {
-                DB.Task task = new DB.Task();
-                task.Title = tbTitle.Text;
-                task.Description = tbDescription.Text;
-                task.ResponsiblePerson = (cmbResponsiblePerson.SelectedItem as Employee).IdEmployee;
-                task.DateStart = Convert.ToDateTime(dpDateStart.Text);
-                task.DateEnd = Convert.ToDateTime(dpDateEnd.Text);
-                task.IdStage = (cmbStage.SelectedItem as Stage).IdStage;
-                if (rbTrue.IsChecked == true)
-                {
-                    task.IsClose = true;
-                }
-                else if (rbFalse.IsChecked == true)
-                {
-                    task.IsClose = false;
-                }
-                Context.Task.Add(task);
-                Context.SaveChanges();
-                MessageBox.Show("Запись успешно добавлена", "Успех!", MessageBoxButton.OK, MessageBoxImage.Information);
-                HomeWindow homeWindow = new HomeWindow();
-                homeWindow.Show();
-                this.Close();
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 

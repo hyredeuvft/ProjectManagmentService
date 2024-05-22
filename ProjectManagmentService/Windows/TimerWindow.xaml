@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjectManagmentService.Windows"
         mc:Ignorable="d"
-        Title="TimerWindow" Height="450" Width="800"
+        Title="Список трудозатрат" Height="450" Width="800"
                         WindowStartupLocation="CenterScreen"
 WindowState="Maximized">
     <Grid>
@@ -25,7 +25,7 @@ WindowState="Maximized">
            VerticalAlignment="Center"
            Background="#062341">
             <StackPanel Orientation="Horizontal">
-                <TextBox x:Name="tbSearch"
+                <!--<TextBox x:Name="tbSearch"
                  Height="50"
                  Margin="800 0 0 0"
                  Background="#FFFFFF"
@@ -39,7 +39,7 @@ WindowState="Maximized">
                             <Setter Property="CornerRadius" Value="10"/>
                         </Style>
                     </TextBox.Resources>
-                </TextBox>
+                </TextBox>-->
 
                 <Button x:Name="btnEdit"
                 Width="50"
@@ -47,7 +47,7 @@ WindowState="Maximized">
                 Click="btnEdit_Click"
                 Background="{x:Null}"
                 BorderBrush="{x:Null}"
-                Margin="5"
+                Margin="805 0 0 0"
                 HorizontalContentAlignment="Center"
                 VerticalContentAlignment="Center"
                 Height="50">
@@ -67,7 +67,7 @@ WindowState="Maximized">
             </StackPanel>
         </Border>
 
-        <Label Content="Сервис проектного менеджмента"
+        <Label Content="Трудозтраты                  "
            VerticalAlignment="Center"
            HorizontalAlignment="Left"
            Margin="5"

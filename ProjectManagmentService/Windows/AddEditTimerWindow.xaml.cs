@@ -70,33 +70,40 @@ namespace ProjectManagmentService.Windows
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-            if (isChange)
+            try
             {
-                editTimer.IdEmployee = (cmbEmployee.SelectedItem as Employee).IdEmployee;
-                editTimer.IdTask = (cmbTask.SelectedItem as DB.Task).IdTask;
-                editTimer.TimeStart = Convert.ToDateTime(dpDateStart.Text);
-                editTimer.TimeEnd = Convert.ToDateTime(dpDateEnd.Text);
-                editTimer.HourJob = Convert.ToDecimal(tbHourJob.Text);
-                EFClass.Context.SaveChanges();
-                MessageBox.Show("Запись успешно обновлена!", "Успех!", MessageBoxButton.OK, MessageBoxImage.Information);
-                HomeWindow homeWindow = new HomeWindow();
-                homeWindow.Show();
-                this.Close();
+                if (isChange)
+                {
+                    editTimer.IdEmployee = (cmbEmployee.SelectedItem as Employee).IdEmployee;
+                    editTimer.IdTask = (cmbTask.SelectedItem as DB.Task).IdTask;
+                    editTimer.TimeStart = Convert.ToDateTime(dpDateStart.Text);
+                    editTimer.TimeEnd = Convert.ToDateTime(dpDateEnd.Text);
+                    editTimer.HourJob = Convert.ToDecimal(tbHourJob.Text);
+                    EFClass.Context.SaveChanges();
+                    MessageBox.Show("Запись успешно обновлена!", "Успех!", MessageBoxButton.OK, MessageBoxImage.Information);
+                    HomeWindow homeWindow = new HomeWindow();
+                    homeWindow.Show();
+                    this.Close();
+                }
+                else
+                {
+                    Timer timer = new Timer();
+                    timer.IdEmployee = (cmbEmployee.SelectedItem as Employee).IdEmployee;
+                    timer.IdTask = (cmbTask.SelectedItem as DB.Task).IdTask;
+                    timer.TimeStart = Convert.ToDateTime(dpDateStart.Text);
+                    timer.TimeEnd = Convert.ToDateTime(dpDateEnd.Text);
+                    timer.HourJob = Convert.ToDecimal(tbHourJob.Text);
+                    EFClass.Context.Timer.Add(timer);
+                    EFClass.Context.SaveChanges();
+                    MessageBox.Show("Запись успешно добавлена", "Успех!", MessageBoxButton.OK, MessageBoxImage.Information);
+                    HomeWindow homeWindow = new HomeWindow();
+                    homeWindow.Show();
+                    this.Close();
+                }
             }
-            else
+            catch (Exception ex)
             {
-                Timer timer = new Timer();
-                timer.IdEmployee = (cmbEmployee.SelectedItem as Employee).IdEmployee;
-                timer.IdTask = (cmbTask.SelectedItem as DB.Task).IdTask;
-                timer.TimeStart = Convert.ToDateTime(dpDateStart.Text);
-                timer.TimeEnd = Convert.ToDateTime(dpDateEnd.Text);
-                timer.HourJob = Convert.ToDecimal(tbHourJob.Text);
-                EFClass.Context.Timer.Add(timer);
-                EFClass.Context.SaveChanges();
-                MessageBox.Show("Запись успешно добавлена", "Успех!", MessageBoxButton.OK, MessageBoxImage.Information);
-                HomeWindow homeWindow = new HomeWindow();
-                homeWindow.Show();
-                this.Close();
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 

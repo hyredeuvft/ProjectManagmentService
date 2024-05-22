@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjectManagmentService.Windows"
         mc:Ignorable="d"
-        Title="AddEditTimerWindow" Height="450" Width="800"
+        Title="Изменение трудозатрат" Height="450" Width="800"
                                     WindowStartupLocation="CenterScreen"
     WindowState="Maximized"
     xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2">
@@ -329,7 +329,6 @@
            Style="{StaticResource lStyle}"/>
         <WrapPanel Grid.Column="0"
            Grid.Row="1"
-           
            HorizontalAlignment="Center"
    Background="#062341">
 
@@ -440,6 +439,8 @@
                 HorizontalAlignment="Center"
                 Margin="35"
                 Grid.Column="1">
+            <Label Content="Сотрудник"
+    Style="{StaticResource lStyle2}"/>
             <ComboBox Style="{DynamicResource ComboBoxStyle1}" 
                       x:Name="cmbEmployee"
                       VerticalContentAlignment="Center"
@@ -447,6 +448,8 @@
                       Padding="10"
                       Margin="5"
                       Height="50"/>
+            <Label Content="Задача"
+    Style="{StaticResource lStyle2}"/>
             <ComboBox Style="{DynamicResource ComboBoxStyle1}" 
                       x:Name="cmbTask"
                       VerticalContentAlignment="Center"
@@ -454,14 +457,20 @@
                       Padding="10"
                       Margin="5"
                       Height="50"/>
-            <DatePicker x:Name="dpDateStart"
+            <Label Content="Время начала работы"
+    Style="{StaticResource lStyle2}"/>
+            <DatePickerTextBox x:Name="dpDateStart"
                     Margin="5"
                     FontSize="18"
                     Height="40"/>
-            <DatePicker x:Name="dpDateEnd"
+            <Label Content="Время окончания работы"
+    Style="{StaticResource lStyle2}"/>
+            <DatePickerTextBox x:Name="dpDateEnd"
                     Margin="5"
                     FontSize="18"
                     Height="40"/>
+            <Label Content="Количество отработанных часов"
+    Style="{StaticResource lStyle2}"/>
             <TextBox x:Name="tbHourJob"
                      Style="{StaticResource tbxStyle}"
                      FontSize="18"

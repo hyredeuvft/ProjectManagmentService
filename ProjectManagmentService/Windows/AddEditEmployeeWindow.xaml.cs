@@ -82,58 +82,65 @@ namespace ProjectManagmentService.Windows
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-            if (isChange)
+            try
             {
-                editEmployee.LastName = tbLastName.Text;
-                editEmployee.FirstName = tbFirstName.Text;
-                editEmployee.Patronymic = tbPatronymic.Text;
-                editEmployee.Birthday = Convert.ToDateTime(dpBirthday.Text);
-                editEmployee.RegistrationDate = Convert.ToDateTime(dpRegistrationDay.Text);     
-                editEmployee.Phone = tbPhone.Text;
-                editEmployee.GenderCode = (cmbGender.SelectedItem as Gender).GenderCode;
-                editEmployee.IdPost = (cmbPost.SelectedItem as Post).IdPost;
-                editEmployee.Email = tbEmail.Text;  
-                editEmployee.Login = tbLogin.Text;
-                editEmployee.Password = pbPassword.Password;
-                if (rbTrue.IsChecked == true)
+                if (isChange)
                 {
-                    editEmployee.IsBlock = true;
+                    editEmployee.LastName = tbLastName.Text;
+                    editEmployee.FirstName = tbFirstName.Text;
+                    editEmployee.Patronymic = tbPatronymic.Text;
+                    editEmployee.Birthday = Convert.ToDateTime(dpBirthday.Text);
+                    editEmployee.RegistrationDate = Convert.ToDateTime(dpRegistrationDay.Text);
+                    editEmployee.Phone = tbPhone.Text;
+                    editEmployee.GenderCode = (cmbGender.SelectedItem as Gender).GenderCode;
+                    editEmployee.IdPost = (cmbPost.SelectedItem as Post).IdPost;
+                    editEmployee.Email = tbEmail.Text;
+                    editEmployee.Login = tbLogin.Text;
+                    editEmployee.Password = pbPassword.Password;
+                    if (rbTrue.IsChecked == true)
+                    {
+                        editEmployee.IsBlock = true;
+                    }
+                    else if (rbFalse.IsChecked == true)
+                    {
+                        editEmployee.IsBlock = false;
+                    }
+                    Context.SaveChanges();
+                    MessageBox.Show("Запись успешно обновлена!", "Успех!", MessageBoxButton.OK, MessageBoxImage.Information);
+                    HomeWindow homeWindow = new HomeWindow();
+                    homeWindow.Show();
+                    this.Close();
                 }
-                else if (rbFalse.IsChecked == true) 
-                { 
-                    editEmployee.IsBlock = false;
+                else
+                {
+                    Employee employee = new Employee();
+                    employee.LastName = tbLastName.Text;
+                    employee.FirstName = tbFirstName.Text;
+                    employee.Patronymic = tbPatronymic.Text;
+                    employee.Birthday = Convert.ToDateTime(dpBirthday.Text);
+                    employee.RegistrationDate = Convert.ToDateTime(dpRegistrationDay.Text);
+                    employee.Phone = tbPhone.Text;
+                    employee.Email = tbEmail.Text;
+                    employee.Login = tbLogin.Text;
+                    employee.GenderCode = (cmbGender.SelectedItem as Gender).GenderCode;
+                    employee.IdPost = (cmbPost.SelectedItem as Post).IdPost;
+                    employee.Password = pbPassword.Password;
+                    if (rbTrue.IsChecked == true)
+                    {
+                        employee.IsBlock = true;
+                    }
+                    else if (rbFalse.IsChecked == true) { employee.IsBlock = false; }
+                    Context.Employee.Add(employee);
+                    Context.SaveChanges();
+                    MessageBox.Show("Запись успешно добавлена", "Успех!", MessageBoxButton.OK, MessageBoxImage.Information);
+                    HomeWindow homeWindow = new HomeWindow();
+                    homeWindow.Show();
+                    this.Close();
                 }
-                Context.SaveChanges();
-                MessageBox.Show("Запись успешно обновлена!", "Успех!", MessageBoxButton.OK, MessageBoxImage.Information);
-                HomeWindow homeWindow = new HomeWindow();
-                homeWindow.Show();
-                this.Close();
             }
-            else
+            catch (Exception ex)
             {
-                Employee employee = new Employee();
-                employee.LastName = tbLastName.Text;
-                employee.FirstName = tbFirstName.Text;
-                employee.Patronymic = tbPatronymic.Text;
-                employee.Birthday = Convert.ToDateTime(dpBirthday.Text);
-                employee.RegistrationDate = Convert.ToDateTime(dpRegistrationDay.Text);
-                employee.Phone = tbPhone.Text;
-                employee.Email = tbEmail.Text;
-                employee.Login = tbLogin.Text;
-                employee.GenderCode = (cmbGender.SelectedItem as Gender).GenderCode;
-                employee.IdPost = (cmbPost.SelectedItem as Post).IdPost;
-                employee.Password = pbPassword.Password;
-                if (rbTrue.IsChecked == true)
-                {
-                    employee.IsBlock = true;
-                }
-                else if (rbFalse.IsChecked == true) { employee.IsBlock = false; }
-                Context.Employee.Add(employee);
-                Context.SaveChanges();
-                MessageBox.Show("Запись успешно добавлена", "Успех!", MessageBoxButton.OK, MessageBoxImage.Information);
-                HomeWindow homeWindow = new HomeWindow();
-                homeWindow.Show();
-                this.Close();
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
         private void btnEmployee_Click(object sender, RoutedEventArgs e)

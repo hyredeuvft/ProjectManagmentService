@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjectManagmentService.Windows"
         mc:Ignorable="d"
-        Title="AuthorizationWindow" Height="450" Width="800"
+        Title="Авторизация" Height="450" Width="800"
         WindowStartupLocation="CenterScreen"
         WindowState="Maximized">
     <Window.Resources>
@@ -39,7 +39,7 @@
 
             <StackPanel>
                 <Label Margin="0 35 0 0"
-                   Content="Сервис проектного менеджмента"
+                   Content="Авторизация"
                    Foreground="#062341"
                    Style="{StaticResource lStyle}"/>
 
