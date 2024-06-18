@@ -29,7 +29,44 @@ Grid.ColumnSpan="2"
 Foreground="#FFFFFF"
 Style="{StaticResource lStyle}"/>
         </Border>-->
+            <syncfusion:SfChart Header="Выполненные обращения"
+                         HorizontalHeaderAlignment="Center"
+                         HorizontalAlignment="Center"
+                         FontSize="16"                        
+                         FontWeight="Medium"                        
+                         AreaBackground="White" 
+                         Background="White"                        
+                         AreaBorderBrush="Black"                           
+                         AreaBorderThickness="1">
+                <!--Initialize the horizontal axis for SfChart-->
+                <syncfusion:SfChart.PrimaryAxis>
+                    <syncfusion:CategoryAxis/>
+                </syncfusion:SfChart.PrimaryAxis>
 
+                <!--Initialize the vertical axis for SfChart-->
+                <syncfusion:SfChart.SecondaryAxis>
+                    <syncfusion:NumericalAxis Header="Количество выполненых обращений" 
+                                       FontSize="12"/>
+                </syncfusion:SfChart.SecondaryAxis>
+
+                <!--Initialize the series for SfChart-->
+                <syncfusion:ColumnSeries Label="Обращения"
+                                  Palette="PurpleChrome"                           
+                                  ItemsSource="{Binding Data}" 
+                                  XBindingPath="FullName" 
+                                  YBindingPath="CountHour" 
+                                  ShowTooltip="True" 
+                                  BorderBrush="AntiqueWhite"
+                                  Foreground="Black">
+                    <!--<syncfusion:ColumnSeries.AdornmentsInfo>
+                        <syncfusion:ChartAdornmentInfo ShowLabel="True" 
+                                                HorizontalAlignment="Center"
+                                                VerticalAlignment="Bottom">
+                        </syncfusion:ChartAdornmentInfo>
+                    </syncfusion:ColumnSeries.AdornmentsInfo>-->
+                </syncfusion:ColumnSeries>
+
+            </syncfusion:SfChart>
 
 
     </Grid>

@@ -47,24 +47,31 @@ namespace ProjectManagmentService.Windows
         {
             InitializeComponent();
 
-            cmbEmployee.ItemsSource = EFClass.Context.Employee.ToList();
-            cmbEmployee.DisplayMemberPath = "LastName";
-
-            cmbTask.ItemsSource = EFClass.Context.Task.ToList();
-            cmbTask.DisplayMemberPath = "Title";
-
-            cmbEmployee.SelectedItem = EFClass.Context.Employee.Where(i => i.IdEmployee == timer.IdEmployee).FirstOrDefault();
-            cmbTask.SelectedItem = EFClass.Context.Task.Where(i => i.IdTask == timer.IdTask).FirstOrDefault();
-            dpDateStart.Text = timer.TimeStart.ToString();
-            dpDateEnd.Text = timer.TimeEnd.ToString();
-            tbHourJob.Text = timer.HourJob.ToString();
-
-            isChange = true;
-            editTimer = timer;
-
-            if (EmployeeDataClass.Employee.IdPost == 3)
+            try
             {
-                btnStatistics.Visibility = Visibility.Collapsed;
+                cmbEmployee.ItemsSource = EFClass.Context.Employee.ToList();
+                cmbEmployee.DisplayMemberPath = "LastName";
+
+                cmbTask.ItemsSource = EFClass.Context.Task.ToList();
+                cmbTask.DisplayMemberPath = "Title";
+
+                cmbEmployee.SelectedItem = EFClass.Context.Employee.Where(i => i.IdEmployee == timer.IdEmployee).FirstOrDefault();
+                cmbTask.SelectedItem = EFClass.Context.Task.Where(i => i.IdTask == timer.IdTask).FirstOrDefault();
+                dpDateStart.Text = timer.TimeStart.ToString();
+                dpDateEnd.Text = timer.TimeEnd.ToString();
+                tbHourJob.Text = timer.HourJob.ToString();
+
+                isChange = true;
+                editTimer = timer;
+
+                if (EmployeeDataClass.Employee.IdPost == 3)
+                {
+                    btnStatistics.Visibility = Visibility.Collapsed;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -72,33 +79,40 @@ namespace ProjectManagmentService.Windows
         {
             try
             {
-                if (isChange)
+                if (string.IsNullOrEmpty(dpDateStart.Text) || string.IsNullOrEmpty(dpDateEnd.Text) || string.IsNullOrEmpty(tbHourJob.Text))
                 {
-                    editTimer.IdEmployee = (cmbEmployee.SelectedItem as Employee).IdEmployee;
-                    editTimer.IdTask = (cmbTask.SelectedItem as DB.Task).IdTask;
-                    editTimer.TimeStart = Convert.ToDateTime(dpDateStart.Text);
-                    editTimer.TimeEnd = Convert.ToDateTime(dpDateEnd.Text);
-                    editTimer.HourJob = Convert.ToDecimal(tbHourJob.Text);
-                    EFClass.Context.SaveChanges();
-                    MessageBox.Show("Запись успешно обновлена!", "Успех!", MessageBoxButton.OK, MessageBoxImage.Information);
-                    HomeWindow homeWindow = new HomeWindow();
-                    homeWindow.Show();
-                    this.Close();
+                    MessageBox.Show("Заполните все обязательные поля!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
                 else
                 {
-                    Timer timer = new Timer();
-                    timer.IdEmployee = (cmbEmployee.SelectedItem as Employee).IdEmployee;
-                    timer.IdTask = (cmbTask.SelectedItem as DB.Task).IdTask;
-                    timer.TimeStart = Convert.ToDateTime(dpDateStart.Text);
-                    timer.TimeEnd = Convert.ToDateTime(dpDateEnd.Text);
-                    timer.HourJob = Convert.ToDecimal(tbHourJob.Text);
-                    EFClass.Context.Timer.Add(timer);
-                    EFClass.Context.SaveChanges();
-                    MessageBox.Show("Запись успешно добавлена", "Успех!", MessageBoxButton.OK, MessageBoxImage.Information);
-                    HomeWindow homeWindow = new HomeWindow();
-                    homeWindow.Show();
-                    this.Close();
+                    if (isChange)
+                    {
+                        editTimer.IdEmployee = (cmbEmployee.SelectedItem as Employee).IdEmployee;
+                        editTimer.IdTask = (cmbTask.SelectedItem as DB.Task).IdTask;
+                        editTimer.TimeStart = Convert.ToDateTime(dpDateStart.Text);
+                        editTimer.TimeEnd = Convert.ToDateTime(dpDateEnd.Text);
+                        editTimer.HourJob = Convert.ToDecimal(tbHourJob.Text);
+                        EFClass.Context.SaveChanges();
+                        MessageBox.Show("Запись успешно обновлена!", "Успех!", MessageBoxButton.OK, MessageBoxImage.Information);
+                        HomeWindow homeWindow = new HomeWindow();
+                        homeWindow.Show();
+                        this.Close();
+                    }
+                    else
+                    {
+                        Timer timer = new Timer();
+                        timer.IdEmployee = (cmbEmployee.SelectedItem as Employee).IdEmployee;
+                        timer.IdTask = (cmbTask.SelectedItem as DB.Task).IdTask;
+                        timer.TimeStart = Convert.ToDateTime(dpDateStart.Text);
+                        timer.TimeEnd = Convert.ToDateTime(dpDateEnd.Text);
+                        timer.HourJob = Convert.ToDecimal(tbHourJob.Text);
+                        EFClass.Context.Timer.Add(timer);
+                        EFClass.Context.SaveChanges();
+                        MessageBox.Show("Запись успешно добавлена", "Успех!", MessageBoxButton.OK, MessageBoxImage.Information);
+                        HomeWindow homeWindow = new HomeWindow();
+                        homeWindow.Show();
+                        this.Close();
+                    }
                 }
             }
             catch (Exception ex)

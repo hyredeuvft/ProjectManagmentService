@@ -21,13 +21,13 @@ namespace ProjectManagmentService.DB
         }
     
         public int IdEntity { get; set; }
+        public string Title { get; set; }
         public string INN { get; set; }
         public string KPP { get; set; }
         public string OGRN { get; set; }
         public string CheckingAccount { get; set; }
         public string CorrespondentAccount { get; set; }
         public bool IsBlock { get; set; }
-        public string Title { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Project> Project { get; set; }

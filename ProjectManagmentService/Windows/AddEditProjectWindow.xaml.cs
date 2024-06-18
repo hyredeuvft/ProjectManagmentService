@@ -32,11 +32,11 @@ namespace ProjectManagmentService.Windows
         {
             InitializeComponent();
 
-            cmbResponsiblePerson.ItemsSource = EFClass.Context.Employee.ToList();
+            cmbResponsiblePerson.ItemsSource = EFClass.Context.Employee.ToList().Where(i => i.IsBlock is false);
             cmbResponsiblePerson.DisplayMemberPath = "LastName";
             cmbResponsiblePerson.SelectedIndex = 0;
 
-            cmbCustomer.ItemsSource = EFClass.Context.Entity.ToList();
+            cmbCustomer.ItemsSource = EFClass.Context.Entity.ToList().Where(i => i.IsBlock is false);
             cmbCustomer.DisplayMemberPath = "Title";
             cmbCustomer.SelectedIndex = 0;
 
@@ -54,91 +54,106 @@ namespace ProjectManagmentService.Windows
         {
             InitializeComponent();
 
-            cmbResponsiblePerson.ItemsSource = EFClass.Context.Employee.ToList();
-            cmbResponsiblePerson.DisplayMemberPath = "LastName";
-
-            cmbCustomer.ItemsSource = EFClass.Context.Entity.ToList();
-            cmbCustomer.DisplayMemberPath = "INN";
-
-            cmbStage.ItemsSource = EFClass.Context.Stage.ToList();
-            cmbStage.DisplayMemberPath = "Title";
-
-            cmbResponsiblePerson.SelectedItem = EFClass.Context.Employee.Where(i => i.IdEmployee == project.ResponsiblePerson).FirstOrDefault();
-            cmbCustomer.SelectedItem = EFClass.Context.Entity.Where(i => i.IdEntity == project.IdCustomer).FirstOrDefault();
-            cmbStage.SelectedItem = EFClass.Context.Stage.Where(i => i.IdStage == project.IdStage).FirstOrDefault();
-            tbTitle.Text = project.Title;
-            tbDescription.Text = project.Description;
-            dpDateStart.Text = project.DateStart.ToString();
-            dpDateEnd.Text = project.DateEnd.ToString();
-            tbBudget.Text = project.Budget.ToString();
-            if (project.IsClose)
+            try
             {
-                rbTrue.IsChecked = true;
+                cmbResponsiblePerson.ItemsSource = EFClass.Context.Employee.ToList().Where(i => i.IsBlock is false);
+                cmbResponsiblePerson.DisplayMemberPath = "LastName";
+
+                cmbCustomer.ItemsSource = EFClass.Context.Entity.ToList().Where(i => i.IsBlock is false);
+                cmbCustomer.DisplayMemberPath = "INN";
+
+                cmbStage.ItemsSource = EFClass.Context.Stage.ToList();
+                cmbStage.DisplayMemberPath = "Title";
+
+                cmbResponsiblePerson.SelectedItem = EFClass.Context.Employee.Where(i => i.IdEmployee == project.ResponsiblePerson).FirstOrDefault();
+                cmbCustomer.SelectedItem = EFClass.Context.Entity.Where(i => i.IdEntity == project.IdCustomer).FirstOrDefault();
+                cmbStage.SelectedItem = EFClass.Context.Stage.Where(i => i.IdStage == project.IdStage).FirstOrDefault();
+                tbTitle.Text = project.Title;
+                tbDescription.Text = project.Description;
+                dpDateStart.Text = project.DateStart.ToString();
+                dpDateEnd.Text = project.DateEnd.ToString();
+                tbBudget.Text = project.Budget.ToString();
+                if (project.IsClose)
+                {
+                    rbTrue.IsChecked = true;
+                }
+                else { rbFalse.IsChecked = true; }
+
+                isChange = true;
+                editProject = project;
+
+                if (EmployeeDataClass.Employee.IdPost == 3)
+                {
+                    btnStatistics.Visibility = Visibility.Collapsed;
+                }
             }
-            else { rbFalse.IsChecked = true; }
-
-            isChange = true;
-            editProject = project;
-
-            if (EmployeeDataClass.Employee.IdPost == 3)
+            catch (Exception)
             {
-                btnStatistics.Visibility = Visibility.Collapsed;
+                MessageBox.Show("Заполните все обязательные поля!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+            
         }
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                if (isChange)
+                if (string.IsNullOrEmpty(tbTitle.Text) || string.IsNullOrEmpty(dpDateStart.Text) || string.IsNullOrEmpty(dpDateEnd.Text) || string.IsNullOrEmpty(tbBudget.Text))
                 {
-                    editProject.Title = tbTitle.Text;
-                    editProject.Description = tbDescription.Text;
-                    editProject.ResponsiblePerson = (cmbResponsiblePerson.SelectedItem as Employee).IdEmployee;
-                    editProject.IdCustomer = (cmbCustomer.SelectedItem as Entity).IdEntity;
-                    editProject.DateStart = Convert.ToDateTime(dpDateStart.Text);
-                    editProject.DateEnd = Convert.ToDateTime(dpDateEnd.Text);
-                    editProject.Budget = Convert.ToDecimal(tbBudget.Text);
-                    editProject.IdStage = (cmbStage.SelectedItem as Stage).IdStage;
-                    if (rbTrue.IsChecked == true)
-                    {
-                        editProject.IsClose = true;
-                    }
-                    else if (rbFalse.IsChecked == true)
-                    {
-                        editProject.IsClose = false;
-                    }
-                    EFClass.Context.SaveChanges();
-                    MessageBox.Show("Запись успешно обновлена!", "Успех!", MessageBoxButton.OK, MessageBoxImage.Information);
-                    HomeWindow homeWindow = new HomeWindow();
-                    homeWindow.Show();
-                    this.Close();
+                    MessageBox.Show("Заполните все обязательные поля!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
                 else
                 {
-                    Project project = new Project();
-                    project.Title = tbTitle.Text;
-                    project.Description = tbDescription.Text;
-                    project.ResponsiblePerson = (cmbResponsiblePerson.SelectedItem as Employee).IdEmployee;
-                    project.IdCustomer = (cmbCustomer.SelectedItem as Entity).IdEntity;
-                    project.DateStart = Convert.ToDateTime(dpDateStart.Text);
-                    project.DateEnd = Convert.ToDateTime(dpDateEnd.Text);
-                    project.Budget = Convert.ToDecimal(tbBudget.Text);
-                    project.IdStage = (cmbStage.SelectedItem as Stage).IdStage;
-                    if (rbTrue.IsChecked == true)
+                    if (isChange)
                     {
-                        project.IsClose = true;
+                        editProject.Title = tbTitle.Text;
+                        editProject.Description = tbDescription.Text;
+                        editProject.ResponsiblePerson = (cmbResponsiblePerson.SelectedItem as Employee).IdEmployee;
+                        editProject.IdCustomer = (cmbCustomer.SelectedItem as Entity).IdEntity;
+                        editProject.DateStart = Convert.ToDateTime(dpDateStart.Text);
+                        editProject.DateEnd = Convert.ToDateTime(dpDateEnd.Text);
+                        editProject.Budget = Convert.ToDecimal(tbBudget.Text);
+                        editProject.IdStage = (cmbStage.SelectedItem as Stage).IdStage;
+                        if (rbTrue.IsChecked == true)
+                        {
+                            editProject.IsClose = true;
+                        }
+                        else if (rbFalse.IsChecked == true)
+                        {
+                            editProject.IsClose = false;
+                        }
+                        EFClass.Context.SaveChanges();
+                        MessageBox.Show("Запись успешно обновлена!", "Успех!", MessageBoxButton.OK, MessageBoxImage.Information);
+                        HomeWindow homeWindow = new HomeWindow();
+                        homeWindow.Show();
+                        this.Close();
                     }
-                    else if (rbFalse.IsChecked == true)
+                    else
                     {
-                        project.IsClose = false;
+                        Project project = new Project();
+                        project.Title = tbTitle.Text;
+                        project.Description = tbDescription.Text;
+                        project.ResponsiblePerson = (cmbResponsiblePerson.SelectedItem as Employee).IdEmployee;
+                        project.IdCustomer = (cmbCustomer.SelectedItem as Entity).IdEntity;
+                        project.DateStart = Convert.ToDateTime(dpDateStart.Text);
+                        project.DateEnd = Convert.ToDateTime(dpDateEnd.Text);
+                        project.Budget = Convert.ToDecimal(tbBudget.Text);
+                        project.IdStage = (cmbStage.SelectedItem as Stage).IdStage;
+                        if (rbTrue.IsChecked == true)
+                        {
+                            project.IsClose = true;
+                        }
+                        else if (rbFalse.IsChecked == true)
+                        {
+                            project.IsClose = false;
+                        }
+                        EFClass.Context.Project.Add(project);
+                        EFClass.Context.SaveChanges();
+                        MessageBox.Show("Запись успешно добавлена", "Успех!", MessageBoxButton.OK, MessageBoxImage.Information);
+                        HomeWindow homeWindow = new HomeWindow();
+                        homeWindow.Show();
+                        this.Close();
                     }
-                    EFClass.Context.Project.Add(project);
-                    EFClass.Context.SaveChanges();
-                    MessageBox.Show("Запись успешно добавлена", "Успех!", MessageBoxButton.OK, MessageBoxImage.Information);
-                    HomeWindow homeWindow = new HomeWindow();
-                    homeWindow.Show();
-                    this.Close();
                 }
             }
             catch (Exception ex)

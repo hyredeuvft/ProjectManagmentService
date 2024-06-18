@@ -37,7 +37,18 @@ namespace ProjectManagmentService.Windows
         {
             List<DB.Task> tasks = new List<DB.Task>();
             tasks = Context.Task.ToList();
-            tasks = tasks.Where(i => i.Title.Contains(tbSearch.Text) && i.IsClose is false).ToList();
+            tasks = tasks.Where(i => i.Title.Contains(tbSearch.Text) && i.IsClose is false 
+                                && i.ResponsiblePerson == EmployeeDataClass.Employee.IdEmployee).ToList();
+
+            LvList.ItemsSource = tasks;
+        }
+
+        private void GetFindList()
+        {
+            List<DB.Task> tasks = new List<DB.Task>();
+            tasks = Context.Task.ToList();
+            tasks = tasks.Where(i => i.Title.ToLower() == tbSearch.Text.ToLower() && i.IsClose is false
+                                && i.ResponsiblePerson == EmployeeDataClass.Employee.IdEmployee).ToList();
 
             LvList.ItemsSource = tasks;
         }
@@ -50,7 +61,15 @@ namespace ProjectManagmentService.Windows
 
         private void tbSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
-            GetSortList();
+            if (!string.IsNullOrEmpty(tbSearch.Text) || !string.IsNullOrWhiteSpace(tbSearch.Text))
+            {
+                GetFindList();
+            }
+            else
+            {
+                GetSortList();
+            }
+            
         }
 
         private void btnEdit_Click(object sender, RoutedEventArgs e)
@@ -59,11 +78,6 @@ namespace ProjectManagmentService.Windows
             {
                 var task = LvList.SelectedItem as DB.Task;
                 AddEditTaskWindow addEditTaskWindow = new AddEditTaskWindow(task);
-                addEditTaskWindow.Show();
-                this.Close();
-            }
-            else {
-                AddEditTaskWindow addEditTaskWindow = new AddEditTaskWindow();
                 addEditTaskWindow.Show();
                 this.Close();
             }

@@ -39,73 +39,88 @@ namespace ProjectManagmentService.Windows
         {
             InitializeComponent();
 
-            tbTitle.Text = entity.Title;
-            tbINN.Text = entity.INN;
-            tbKPP.Text = entity.KPP;
-            tbOGRN.Text = entity.OGRN;
-            tbCheckingAccount.Text = entity.CheckingAccount;
-            tbCorrespondentAccount.Text = entity.CorrespondentAccount;
-            if (entity.IsBlock)
+            try
             {
-                rbTrue.IsChecked = true;
+                tbTitle.Text = entity.Title;
+                tbINN.Text = entity.INN;
+                tbKPP.Text = entity.KPP;
+                tbOGRN.Text = entity.OGRN;
+                tbCheckingAccount.Text = entity.CheckingAccount;
+                tbCorrespondentAccount.Text = entity.CorrespondentAccount;
+                if (entity.IsBlock)
+                {
+                    rbTrue.IsChecked = true;
+                }
+                else { rbFalse.IsChecked = true; }
+
+                isChange = true;
+                editEntity = entity;
+
+                if (EmployeeDataClass.Employee.IdPost == 3)
+                {
+                    btnStatistics.Visibility = Visibility.Collapsed;
+                }
             }
-            else { rbFalse.IsChecked = true; }
-
-            isChange = true;
-            editEntity = entity;
-
-            if (EmployeeDataClass.Employee.IdPost == 3)
+            catch (Exception ex)
             {
-                btnStatistics.Visibility = Visibility.Collapsed;
-            }
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }            
         }
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                if (isChange)
+                if (string.IsNullOrEmpty(tbTitle.Text) || string.IsNullOrEmpty(tbINN.Text) || string.IsNullOrEmpty(tbKPP.Text) ||
+                        string.IsNullOrEmpty(tbOGRN.Text) || string.IsNullOrEmpty(tbCheckingAccount.Text) || string.IsNullOrEmpty(tbCorrespondentAccount.Text))
                 {
-                    editEntity.Title = tbTitle.Text;
-                    editEntity.INN = tbINN.Text;
-                    editEntity.KPP = tbKPP.Text;
-                    editEntity.OGRN = tbOGRN.Text;
-                    editEntity.CheckingAccount = tbCheckingAccount.Text;
-                    editEntity.CorrespondentAccount = tbCorrespondentAccount.Text;
-                    if (rbTrue.IsChecked == true)
-                    {
-                        editEntity.IsBlock = true;
-                    }
-                    else if (rbFalse.IsChecked == true)
-                    {
-                        editEntity.IsBlock = false;
-                    }
-                    Context.SaveChanges();
-                    MessageBox.Show("Запись успешно обновлена!", "Успех!", MessageBoxButton.OK, MessageBoxImage.Information);
-                    HomeWindow homeWindow = new HomeWindow();
-                    homeWindow.Show();
-                    this.Close();
+                    MessageBox.Show("Заполните все обязательные поля!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
                 else
                 {
-                    Entity entity = new Entity();
-                    entity.Title = tbTitle.Text;
-                    entity.INN = tbINN.Text;
-                    entity.KPP = tbKPP.Text;
-                    entity.OGRN = tbOGRN.Text;
-                    entity.CheckingAccount = tbCheckingAccount.Text;
-                    entity.CorrespondentAccount = tbCorrespondentAccount.Text;
-                    if (rbTrue.IsChecked == true)
+                    if (isChange)
                     {
-                        entity.IsBlock = true;
+                        editEntity.Title = tbTitle.Text;
+                        editEntity.INN = tbINN.Text;
+                        editEntity.KPP = tbKPP.Text;
+                        editEntity.OGRN = tbOGRN.Text;
+                        editEntity.CheckingAccount = tbCheckingAccount.Text;
+                        editEntity.CorrespondentAccount = tbCorrespondentAccount.Text;
+                        if (rbTrue.IsChecked == true)
+                        {
+                            editEntity.IsBlock = true;
+                        }
+                        else if (rbFalse.IsChecked == true)
+                        {
+                            editEntity.IsBlock = false;
+                        }
+                        Context.SaveChanges();
+                        MessageBox.Show("Запись успешно обновлена!", "Успех!", MessageBoxButton.OK, MessageBoxImage.Information);
+                        HomeWindow homeWindow = new HomeWindow();
+                        homeWindow.Show();
+                        this.Close();
                     }
-                    else if (rbFalse.IsChecked == true) { entity.IsBlock = false; }
-                    Context.Entity.Add(entity);
-                    Context.SaveChanges();
-                    MessageBox.Show("Запись успешно добавлена", "Успех!", MessageBoxButton.OK, MessageBoxImage.Information);
-                    HomeWindow homeWindow = new HomeWindow();
-                    homeWindow.Show();
-                    this.Close();
+                    else
+                    {
+                        Entity entity = new Entity();
+                        entity.Title = tbTitle.Text;
+                        entity.INN = tbINN.Text;
+                        entity.KPP = tbKPP.Text;
+                        entity.OGRN = tbOGRN.Text;
+                        entity.CheckingAccount = tbCheckingAccount.Text;
+                        entity.CorrespondentAccount = tbCorrespondentAccount.Text;
+                        if (rbTrue.IsChecked == true)
+                        {
+                            entity.IsBlock = true;
+                        }
+                        else if (rbFalse.IsChecked == true) { entity.IsBlock = false; }
+                        Context.Entity.Add(entity);
+                        Context.SaveChanges();
+                        MessageBox.Show("Запись успешно добавлена", "Успех!", MessageBoxButton.OK, MessageBoxImage.Information);
+                        HomeWindow homeWindow = new HomeWindow();
+                        homeWindow.Show();
+                        this.Close();
+                    }
                 }
             }
             catch (Exception ex)

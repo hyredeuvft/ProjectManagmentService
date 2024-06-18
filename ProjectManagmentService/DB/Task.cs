@@ -28,13 +28,15 @@ namespace ProjectManagmentService.DB
         public int ResponsiblePerson { get; set; }
         public System.DateTime DateStart { get; set; }
         public System.DateTime DateEnd { get; set; }
+        public Nullable<int> IdProject { get; set; }
+        public string Comment { get; set; }
         public byte IdStage { get; set; }
         public bool IsClose { get; set; }
-        public string Comment { get; set; }
     
         public virtual Employee Employee { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<EmployeeTask> EmployeeTask { get; set; }
+        public virtual Project Project { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProjectTask> ProjectTask { get; set; }
         public virtual Stage Stage { get; set; }

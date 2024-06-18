@@ -436,8 +436,8 @@
 
         </WrapPanel>
         <StackPanel Grid.Row="1"
-                HorizontalAlignment="Center"
-                Margin="35"
+                HorizontalAlignment="Left"
+                Margin="135 35 0 0"
                 Grid.Column="1">
             <Label Content="Название задачи"
     Style="{StaticResource lStyle2}"/>
@@ -455,6 +455,15 @@ Style="{StaticResource lStyle2}"/>
 Style="{StaticResource lStyle2}"/>
             <ComboBox Style="{DynamicResource ComboBoxStyle1}" 
       x:Name="cmbResponsiblePerson"
+      VerticalContentAlignment="Center"
+      FontSize="18"
+      Padding="10"
+      Margin="5"
+      Height="50"/>
+            <Label Content="Проект"
+Style="{StaticResource lStyle2}"/>
+            <ComboBox Style="{DynamicResource ComboBoxStyle1}" 
+      x:Name="cmbProject"
       VerticalContentAlignment="Center"
       FontSize="18"
       Padding="10"
@@ -497,46 +506,47 @@ Style="{StaticResource lStyle2}"/>
                      FontSize="18"
                      Content="Не выполнен"
                      Style="{StaticResource rbStyle}"/>
-
-            
-            <Button x:Name="btnSave"
-                Style="{StaticResource btnStyle}"
-                Width="150"
-                Height="50"
-                FontSize="24"
-                VerticalAlignment="Bottom"
-                Margin="30"
-                Click="btnSave_Click"
-                Content="Сохранить"  >
+        </StackPanel>
+        <StackPanel
+           Grid.Row="1"
+    HorizontalAlignment="Right"
+            VerticalAlignment="Center"
+    Margin="0 35 435 0"
+    Grid.Column="1">
+            <DatePickerTextBox x:Name="dpStart"
+                       Margin="5"
+                       Text="____________"
+                       FontSize="18"
+                       Height="40"/>
+            <Button x:Name="btnStart"
+            Style="{StaticResource btnStyle}"
+            Width="215"
+            Height="50"
+            FontSize="16"
+            Margin="5"
+            Content="Зафиксировать время" 
+            Click="btnStart_Click" >
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="10"/>
                     </Style>
                 </Button.Resources>
             </Button>
-            <WrapPanel HorizontalAlignment="Center"
-            Orientation="Horizontal"
-            Margin="50">
-                <DatePickerTextBox x:Name="dpStart"
-                                   Margin="5"
-                                   Text="____________"
-                                   FontSize="18"
-                                   Height="40"/>
-                <Button x:Name="btnStart"
-                        Style="{StaticResource btnStyle}"
-                        Width="215"
-                        Height="50"
-                        FontSize="16"
-                        Margin="5"
-                        Content="Зафиксировать время" 
-                        Click="btnStart_Click" >
-                    <Button.Resources>
-                        <Style TargetType="Border">
-                            <Setter Property="CornerRadius" Value="10"/>
-                        </Style>
-                    </Button.Resources>
-                </Button>
-            </WrapPanel>
+            <Button x:Name="btnSave"
+    Style="{StaticResource btnStyle}"
+    Width="150"
+    Height="50"
+    FontSize="24"
+    VerticalAlignment="Bottom"
+    Margin="30"
+    Click="btnSave_Click"
+    Content="Сохранить"  >
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
         </StackPanel>
     </Grid>
 </Window>

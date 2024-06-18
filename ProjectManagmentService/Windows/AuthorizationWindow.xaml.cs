@@ -29,20 +29,26 @@ namespace ProjectManagmentService.Windows
 
         private void btnLogIn_Click(object sender, RoutedEventArgs e)
         {
-            var auth = Context.Employee.ToList()
-                .Where(i => i.Login == tbLogin.Text && i.Password == pbPassword.Password).FirstOrDefault();
-            if (auth != null && auth.IsBlock == false)
+            try
             {
-                ClassHelper.EmployeeDataClass.Employee = auth;
-                HomeWindow homeWindow = new HomeWindow();
-                homeWindow.Show();
-                this.Close();
+                var auth = Context.Employee.ToList()
+                .Where(i => i.Password == pbPassword.Password && ( i.Login == tbLogin.Text || i.Email == tbLogin.Text )).FirstOrDefault();
+                if (auth != null && auth.IsBlock == false)
+                {
+                    ClassHelper.EmployeeDataClass.Employee = auth;
+                    HomeWindow homeWindow = new HomeWindow();
+                    homeWindow.Show();
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Такой пользователь не найден.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Такой пользователь не найден.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            
         }
     }
 }

@@ -25,49 +25,48 @@ WindowState="Maximized">
            VerticalAlignment="Center"
            Background="#062341">
             <StackPanel Orientation="Horizontal">
-                <!--<TextBox x:Name="tbSearch"
-                 Height="50"
-                 Margin="800 0 0 0"
-                 Background="#FFFFFF"
-                 BorderBrush="#FFFFFF"
-                 Width="300"
-                 FontSize="18"
-                 TextChanged="tbSearch_TextChanged"
-                 Style="{StaticResource tbxStyle}">
-                    <TextBox.Resources>
-                        <Style TargetType="Border">
-                            <Setter Property="CornerRadius" Value="10"/>
-                        </Style>
-                    </TextBox.Resources>
-                </TextBox>-->
-
-                <Button x:Name="btnEdit"
-                Width="50"
-                HorizontalAlignment="Left"
-                Click="btnEdit_Click"
-                Background="{x:Null}"
-                BorderBrush="{x:Null}"
-                Margin="805 0 0 0"
-                HorizontalContentAlignment="Center"
-                VerticalContentAlignment="Center"
-                Height="50">
-                    <Image Source="/Resources/Edit.png"/>
-                </Button>
-
-                <Button x:Name="btnLk"
-                Width="50"
-                Background="{x:Null}"
-                BorderBrush="{x:Null}"
-                HorizontalAlignment="Left"
-                Margin="700 0 0 0"
-                Click="btnLk_Click"
-                Height="50">
+                <TextBox x:Name="tbSearch"
+                         Height="50"
+                         Margin="800 0 0 0"
+                         Background="#FFFFFF"
+                         BorderBrush="#FFFFFF"
+                         Width="300"
+                         FontSize="18"
+                         Style="{StaticResource tbxStyle}">
+                                        <TextBox.Resources>
+                                            <Style TargetType="Border">
+                                                <Setter Property="CornerRadius" Value="10"/>
+                                            </Style>
+                                        </TextBox.Resources>
+                                    </TextBox>
+                        
+                                    <Button x:Name="btnEdit"
+                        Width="50"
+                        HorizontalAlignment="Left"
+                        Click="btnEdit_Click"
+                        Background="{x:Null}"
+                        BorderBrush="{x:Null}"
+                        Margin="5"
+                        HorizontalContentAlignment="Center"
+                        VerticalContentAlignment="Center"
+                        Height="50">
+                                        <Image Source="/Resources/Edit.png"/>
+                                    </Button>
+                        
+                                    <Button x:Name="btnLk"
+                        Width="50"
+                        Background="{x:Null}"
+                        BorderBrush="{x:Null}"
+                        HorizontalAlignment="Left"
+                        Margin="700 0 0 0"
+                        Click="btnLk_Click"
+                        Height="50">
                     <Image Source="/Resources/lk.png"/>
                 </Button>
             </StackPanel>
         </Border>
 
-        <Label Content="Трудозтраты                  "
+        <Label Content="Трудозатраты                 "
            VerticalAlignment="Center"
            HorizontalAlignment="Left"
            Margin="5"

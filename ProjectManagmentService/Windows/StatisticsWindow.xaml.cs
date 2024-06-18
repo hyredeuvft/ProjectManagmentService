@@ -39,41 +39,42 @@ namespace ProjectManagmentService.Windows
         public StatisticsWindow()
         {
             InitializeComponent();
+            this.DataContext = new ViewModel();
 
-            SfChart chart = new SfChart() { Header = "Количество отработанных часов", FontSize = 14 };
+            //SfChart chart = new SfChart() { Header = "Количество отработанных часов", FontSize = 14 };
 
-            //Adding horizontal axis to the chart 
-            CategoryAxis primaryAxis = new CategoryAxis();
-            primaryAxis.Header = "Почта сотрудника";
-            primaryAxis.FontSize = 14;
-            chart.PrimaryAxis = primaryAxis;
+            ////Adding horizontal axis to the chart 
+            //CategoryAxis primaryAxis = new CategoryAxis();
+            //primaryAxis.Header = "Почта сотрудника";
+            //primaryAxis.FontSize = 14;
+            //chart.PrimaryAxis = primaryAxis;
 
-            //chart.PrimaryAxis = new CategoryAxis()
-            //{
+            ////chart.PrimaryAxis = new CategoryAxis()
+            ////{
 
-            //    EnableScrollBar = true
+            ////    EnableScrollBar = true
 
-            //};
+            ////};
 
-            //Adding vertical axis to the chart 
-            NumericalAxis secondaryAxis = new NumericalAxis();
-            secondaryAxis.Header = "Количество часов";
-            secondaryAxis.FontSize = 14;
-            chart.SecondaryAxis = secondaryAxis;
+            ////Adding vertical axis to the chart 
+            //NumericalAxis secondaryAxis = new NumericalAxis();
+            //secondaryAxis.Header = "Количество часов";
+            //secondaryAxis.FontSize = 14;
+            //chart.SecondaryAxis = secondaryAxis;
 
-            //Initializing column series
-            ColumnSeries series = new ColumnSeries();
-            series.ItemsSource = (new ViewModel()).Data;
-            series.XBindingPath = "Email";
-            series.YBindingPath = "CountHour";
-            series.ShowTrackballInfo = true;
-            series.ShowTooltip = true;
-            series.Label = "Heights";
+            ////Initializing column series
+            //ColumnSeries series = new ColumnSeries();
+            //series.ItemsSource = (new ViewModel()).Data;
+            //series.XBindingPath = "Email";
+            //series.YBindingPath = "CountHour";
+            //series.ShowTrackballInfo = true;
+            //series.ShowTooltip = true;
+            //series.Label = "Heights";
 
 
-            //Adding Series to the Chart Series Collection
-            chart.Series.Add(series);
-            this.Content = chart;
+            ////Adding Series to the Chart Series Collection
+            //chart.Series.Add(series);
+            //this.Content = chart;
         }
     }
 }

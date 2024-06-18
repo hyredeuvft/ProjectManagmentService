@@ -20,6 +20,7 @@ namespace ProjectManagmentService.DB
             this.ProjectResource = new HashSet<ProjectResource>();
             this.ProjectTask = new HashSet<ProjectTask>();
             this.SkillProject = new HashSet<SkillProject>();
+            this.Task = new HashSet<Task>();
         }
     
         public int IdProject { get; set; }
@@ -42,5 +43,7 @@ namespace ProjectManagmentService.DB
         public virtual ICollection<ProjectTask> ProjectTask { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SkillProject> SkillProject { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Task> Task { get; set; }
     }
 }
